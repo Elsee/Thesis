@@ -1,0 +1,90 @@
+For the user number 1 with activity type Jogging FRR: 37.76824034334764 FAR: 46.430092264017034 . Extracted from raw data
+For the user number 2 with activity type Jogging FRR: 29.914529914529915 FAR: 51.98012775017743 . Extracted from raw data
+For the user number 3 with activity type Jogging FRR: 30.04115226337449 FAR: 59.78708303761533 . Extracted from raw data
+For the user number 4 with activity type Jogging FRR: 33.76623376623377 FAR: 41.51880766501065 . Extracted from raw data
+For the user number 5 with activity type Jogging FRR: 33.93665158371041 FAR: 59.48899929027679 . Extracted from raw data
+For the user number 6 with activity type Jogging FRR: 32.1285140562249 FAR: 49.45351312987935 . Extracted from raw data
+For the user number 1 with activity type Running FRR: 25.925925925925924 FAR: 54.2894280762565 . Extracted from raw data
+For the user number 2 with activity type Running FRR: 45.07042253521127 FAR: 55.93587521663779 . Extracted from raw data
+For the user number 3 with activity type Running FRR: 44.57831325301205 FAR: 56.845753899480066 . Extracted from raw data
+For the user number 4 with activity type Running FRR: 42.028985507246375 FAR: 57.27902946273831 . Extracted from raw data
+For the user number 5 with activity type Running FRR: 43.28358208955223 FAR: 51.429809358752166 . Extracted from raw data
+For the user number 6 with activity type Running FRR: 46.808510638297875 FAR: 42.37435008665511 . Extracted from raw data
+For the user number 1 with activity type Walking down-stairs FRR: 35.9375 FAR: 48.0540761982794 . Extracted from raw data
+For the user number 2 with activity type Walking down-stairs FRR: 35.714285714285715 FAR: 48.83244571896764 . Extracted from raw data
+For the user number 3 with activity type Walking down-stairs FRR: 45.45454545454545 FAR: 53.420729209340436 . Extracted from raw data
+For the user number 4 with activity type Walking down-stairs FRR: 31.76470588235294 FAR: 48.70954526833265 . Extracted from raw data
+For the user number 5 with activity type Walking down-stairs FRR: 43.93939393939394 FAR: 53.62556329373208 . Extracted from raw data
+For the user number 6 with activity type Walking down-stairs FRR: 30.693069306930692 FAR: 54.608766898811965 . Extracted from raw data
+For the user number 1 with activity type Walking up-stairs FRR: 60.91954022988506 FAR: 45.69932685115931 . Extracted from raw data
+For the user number 2 with activity type Walking up-stairs FRR: 42.857142857142854 FAR: 44.988780852655196 . Extracted from raw data
+For the user number 3 with activity type Walking up-stairs FRR: 40.69767441860465 FAR: 59.050112191473445 . Extracted from raw data
+For the user number 4 with activity type Walking up-stairs FRR: 38.20224719101123 FAR: 45.96110695587136 . Extracted from raw data
+For the user number 5 with activity type Walking up-stairs FRR: 43.05555555555556 FAR: 43.1189229618549 . Extracted from raw data
+For the user number 6 with activity type Walking up-stairs FRR: 43.80952380952381 FAR: 46.37247569184742 . Extracted from raw data
+For the user number 1 with activity type Walking FRR: 39.63254593175853 FAR: 48.98843930635838 . Extracted from raw data
+For the user number 2 with activity type Walking FRR: 47.926267281105986 FAR: 37.80346820809248 . Extracted from raw data
+For the user number 3 with activity type Walking FRR: 24.688279301745634 FAR: 41.84971098265896 . Extracted from raw data
+For the user number 4 with activity type Walking FRR: 38.29268292682927 FAR: 47.23699421965318 . Extracted from raw data
+For the user number 5 with activity type Walking FRR: 31.301939058171747 FAR: 49.36416184971098 . Extracted from raw data
+For the user number 6 with activity type Walking FRR: 28.539823008849556 FAR: 44.86127167630058 . Extracted from raw data
+For the user number 1 with activity type Jogging FRR: 36.48068669527897 FAR: 47.480482611781405 . Extracted from raw data
+For the user number 2 with activity type Jogging FRR: 27.350427350427353 FAR: 67.8779276082328 . Extracted from raw data
+For the user number 3 with activity type Jogging FRR: 30.45267489711934 FAR: 63.98864442867281 . Extracted from raw data
+For the user number 4 with activity type Jogging FRR: 28.57142857142857 FAR: 68.8999290276792 . Extracted from raw data
+For the user number 5 with activity type Jogging FRR: 30.76923076923077 FAR: 70.26259758694108 . Extracted from raw data
+For the user number 6 with activity type Jogging FRR: 30.923694779116467 FAR: 50.745209368346345 . Extracted from raw data
+For the user number 1 with activity type Running FRR: 34.5679012345679 FAR: 60.35528596187175 . Extracted from raw data
+For the user number 2 with activity type Running FRR: 43.66197183098591 FAR: 56.36915077989602 . Extracted from raw data
+For the user number 3 with activity type Running FRR: 39.75903614457831 FAR: 55.719237435008665 . Extracted from raw data
+For the user number 4 with activity type Running FRR: 52.17391304347826 FAR: 51.16984402079723 . Extracted from raw data
+For the user number 5 with activity type Running FRR: 52.23880597014925 FAR: 60.70190641247834 . Extracted from raw data
+For the user number 6 with activity type Running FRR: 42.5531914893617 FAR: 45.363951473136915 . Extracted from raw data
+For the user number 1 with activity type Walking down-stairs FRR: 46.875 FAR: 53.66653011061041 . Extracted from raw data
+For the user number 2 with activity type Walking down-stairs FRR: 38.775510204081634 FAR: 56.73904137648505 . Extracted from raw data
+For the user number 3 with activity type Walking down-stairs FRR: 50.649350649350644 FAR: 53.74846374436706 . Extracted from raw data
+For the user number 4 with activity type Walking down-stairs FRR: 31.76470588235294 FAR: 51.74108971732896 . Extracted from raw data
+For the user number 5 with activity type Walking down-stairs FRR: 46.96969696969697 FAR: 43.71159360917657 . Extracted from raw data
+For the user number 6 with activity type Walking down-stairs FRR: 30.693069306930692 FAR: 54.8136009832036 . Extracted from raw data
+For the user number 1 with activity type Walking up-stairs FRR: 47.12643678160919 FAR: 54.00149588631265 . Extracted from raw data
+For the user number 2 with activity type Walking up-stairs FRR: 52.04081632653062 FAR: 43.00673148840688 . Extracted from raw data
+For the user number 3 with activity type Walking up-stairs FRR: 30.23255813953488 FAR: 47.56918474195962 . Extracted from raw data
+For the user number 4 with activity type Walking up-stairs FRR: 43.82022471910113 FAR: 47.23261032161556 . Extracted from raw data
+For the user number 5 with activity type Walking up-stairs FRR: 38.88888888888889 FAR: 40.68810770381451 . Extracted from raw data
+For the user number 6 with activity type Walking up-stairs FRR: 35.23809523809524 FAR: 59.23709798055348 . Extracted from raw data
+For the user number 1 with activity type Walking FRR: 40.15748031496063 FAR: 52.45086705202312 . Extracted from raw data
+For the user number 2 with activity type Walking FRR: 38.0184331797235 FAR: 53.895953757225435 . Extracted from raw data
+For the user number 3 with activity type Walking FRR: 40.14962593516209 FAR: 40.41618497109827 . Extracted from raw data
+For the user number 4 with activity type Walking FRR: 40.243902439024396 FAR: 47.61849710982659 . Extracted from raw data
+For the user number 5 with activity type Walking FRR: 41.82825484764543 FAR: 47.97687861271676 . Extracted from raw data
+For the user number 6 with activity type Walking FRR: 38.05309734513274 FAR: 54.19653179190751 . Extracted from raw data
+For the user number 1 with activity type Jogging FRR: 25.75107296137339 FAR: 49.36834634492548 . Extracted from filtered data
+For the user number 2 with activity type Jogging FRR: 33.33333333333333 FAR: 57.53016323633783 . Extracted from filtered data
+For the user number 3 with activity type Jogging FRR: 30.04115226337449 FAR: 65.63520227111427 . Extracted from filtered data
+For the user number 4 with activity type Jogging FRR: 30.735930735930733 FAR: 45.13839602555004 . Extracted from filtered data
+For the user number 5 with activity type Jogging FRR: 32.57918552036199 FAR: 61.57558552164656 . Extracted from filtered data
+For the user number 6 with activity type Jogging FRR: 43.373493975903614 FAR: 43.33569907735983 . Extracted from filtered data
+For the user number 1 with activity type Running FRR: 33.33333333333333 FAR: 54.59272097053726 . Extracted from filtered data
+For the user number 2 with activity type Running FRR: 36.61971830985916 FAR: 57.36568457538995 . Extracted from filtered data
+For the user number 3 with activity type Running FRR: 40.963855421686745 FAR: 61.78509532062392 . Extracted from filtered data
+For the user number 4 with activity type Running FRR: 47.82608695652174 FAR: 57.36568457538995 . Extracted from filtered data
+For the user number 5 with activity type Running FRR: 46.26865671641791 FAR: 52.512998266897746 . Extracted from filtered data
+For the user number 6 with activity type Running FRR: 43.61702127659575 FAR: 55.97920277296361 . Extracted from filtered data
+For the user number 1 with activity type Walking down-stairs FRR: 53.125 FAR: 53.052027857435476 . Extracted from filtered data
+For the user number 2 with activity type Walking down-stairs FRR: 27.55102040816326 FAR: 56.41130684145842 . Extracted from filtered data
+For the user number 3 with activity type Walking down-stairs FRR: 38.961038961038966 FAR: 37.93527242933224 . Extracted from filtered data
+For the user number 4 with activity type Walking down-stairs FRR: 44.70588235294118 FAR: 45.84186808684965 . Extracted from filtered data
+For the user number 5 with activity type Walking down-stairs FRR: 53.03030303030303 FAR: 54.40393281442032 . Extracted from filtered data
+For the user number 6 with activity type Walking down-stairs FRR: 28.71287128712871 FAR: 54.32199918066366 . Extracted from filtered data
+For the user number 1 with activity type Walking up-stairs FRR: 48.275862068965516 FAR: 45.6245325355273 . Extracted from filtered data
+For the user number 2 with activity type Walking up-stairs FRR: 39.795918367346935 FAR: 35.26551982049364 . Extracted from filtered data
+For the user number 3 with activity type Walking up-stairs FRR: 29.069767441860467 FAR: 58.45175766641735 . Extracted from filtered data
+For the user number 4 with activity type Walking up-stairs FRR: 43.82022471910113 FAR: 47.5317875841436 . Extracted from filtered data
+For the user number 5 with activity type Walking up-stairs FRR: 45.83333333333333 FAR: 38.556469708302174 . Extracted from filtered data
+For the user number 6 with activity type Walking up-stairs FRR: 43.80952380952381 FAR: 47.64397905759162 . Extracted from filtered data
+For the user number 1 with activity type Walking FRR: 36.74540682414698 FAR: 54.80346820809249 . Extracted from filtered data
+For the user number 2 with activity type Walking FRR: 35.25345622119816 FAR: 47.28323699421965 . Extracted from filtered data
+For the user number 3 with activity type Walking FRR: 29.177057356608476 FAR: 64.92485549132948 . Extracted from filtered data
+For the user number 4 with activity type Walking FRR: 31.951219512195124 FAR: 48.653179190751445 . Extracted from filtered data
+For the user number 5 with activity type Walking FRR: 30.47091412742382 FAR: 47.30635838150289 . Extracted from filtered data
+For the user number 6 with activity type Walking FRR: 40.929203539823014 FAR: 56.22543352601156 . Extracted from filtered data
