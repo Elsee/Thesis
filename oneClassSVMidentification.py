@@ -9,13 +9,9 @@ from sklearn.metrics import roc_curve, auc
 from sklearn.preprocessing import label_binarize
 from itertools import cycle
 
-#users = [1,2,3,4,5,6]
-#activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
-#features =  ["featuresOrig", "featuresFilt", "featuresOrigPCA40", "featuresOrigPCA57", "featuresFiltPCA40", "featuresFiltPCA57"]
-
 users = [1,2,3,4,5,6]
-activities = ["Jogging"]
-features =  ["featuresOrig"]
+activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
+features =  ["featuresOrig", "featuresFilt", "featuresOrigPCA40", "featuresOrigPCA57", "featuresFiltPCA40", "featuresFiltPCA57"]
 
 for feature in features:
     errTable = pandas.DataFrame()
@@ -95,10 +91,12 @@ for feature in features:
             plt.ylim([0.0, 1.05])
             plt.xlabel('False Positive Rate')
             plt.ylabel('True Positive Rate')
-            plt.title('ROC curve for user : ' + str(userNum) + 'doing activity: ' + activityType + ' recieved from ' + featuresType)
+            plt.title('ROC curve for user : ' + str(userNum) + ' doing activity: ' + activityType + ' recieved from ' + featuresType)
             plt.legend(loc="lower right")
+            plt.savefig('E:/Study/ThesisGit/Thesis/oneClassSVMident/ROC_curves/' + featuresType +'_' + activityType + str(userNum) + '.png', bbox_inches='tight')
+
             plt.show()
-            
+            plt.close()
 #            print(FRR)
 #            print(FAR)
             
@@ -121,4 +119,4 @@ for feature in features:
     last = errTable.index[-1]
     errTable = errTable.rename(index={last: 'mean'})
     
-#    errTable.to_csv('D:/Study/Thesis/System/svmIdent/' + feature+ '_results.csv', index = True)
+    errTable.to_csv('E:/Study/ThesisGit/Thesis/oneClassSVMident' + feature+ '_results.csv', index = True)
