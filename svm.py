@@ -21,7 +21,7 @@ for feature in features:
             userNum = us
             featuresType = feature
     
-            filenames = glob.glob('D:/Study/Thesis/System/myTrainingData/' + featuresType +'_' + activityType + '*.csv')
+            filenames = glob.glob('E:/Study/ThesisGit/Thesis/myTrainingData/' + featuresType +'_' + activityType + '*.csv')
     
             allUsersFeatures = pandas.DataFrame()
     
@@ -41,7 +41,7 @@ for feature in features:
             sc = StandardScaler()
             allUsersFeatures = sc.fit_transform(allUsersFeatures)
             
-            currentUserData = pandas.read_csv('D:/Study/Thesis/System/myTrainingData/' + featuresType +'_' + activityType + str(userNum) + '.csv', header = 0)
+            currentUserData = pandas.read_csv('E:/Study/ThesisGit/Thesis/myTrainingData/' + featuresType +'_' + activityType + str(userNum) + '.csv', header = 0)
             currentUserData['target'] = 1
             
             curUserTarget = currentUserData['target']
@@ -75,9 +75,6 @@ for feature in features:
             FRR = totalCM[1][0] / (totalCM[1][0] + totalCM[1][1])
             FAR = totalCM[0][1] / (totalCM[0][0] + totalCM[0][1])
             
-            print(FRR)
-            print(FAR)
-            
             curColumn[act][counter] = [FRR, FAR]
             counter=counter+1
         
@@ -97,7 +94,7 @@ for feature in features:
     last = errTable.index[-1]
     errTable = errTable.rename(index={last: 'mean'})
     
-  #  errTable.to_csv('D:/Study/Thesis/System/' + feature+ '_results.csv', index = True)
+    errTable.to_csv('E:/Study/ThesisGit/Thesis/svmAuth/svmAuth' + feature+ '_results.csv', index = True)
 
             
             

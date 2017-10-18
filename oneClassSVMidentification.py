@@ -26,7 +26,7 @@ for feature in features:
             userNum = us
             featuresType = feature
 
-            filenames = glob.glob('D:/Study/Thesis/System/myTrainingData/' + featuresType +'_' + activityType + '*.csv')
+            filenames = glob.glob('E:/Study/ThesisGit/Thesis/myTrainingData/' + featuresType +'_' + activityType + '*.csv')
             allUsersFeatures = pandas.DataFrame()
                 
             for item in filenames:
@@ -39,8 +39,8 @@ for feature in features:
             allUsersFeatures.loc[allUsersFeatures['user'] != userNum, "attack"] = -1
             
             target = allUsersFeatures['attack']
-            target = label_binarize(target, classes=[0, 1])
-            n_classes = target.shape[1]
+            target1 = label_binarize(target, classes=[0, 1])
+            n_classes = target1.shape[1]
             
             targetUser = target[target == 1]
             outliers = target[target == -1]  
@@ -97,8 +97,6 @@ for feature in features:
 
             plt.show()
             plt.close()
-#            print(FRR)
-#            print(FAR)
             
             curColumn[act][counter] = [FRR, FAR]
             counter=counter+1
@@ -119,4 +117,4 @@ for feature in features:
     last = errTable.index[-1]
     errTable = errTable.rename(index={last: 'mean'})
     
-    errTable.to_csv('E:/Study/ThesisGit/Thesis/oneClassSVMident' + feature+ '_results.csv', index = True)
+    errTable.to_csv('E:/Study/ThesisGit/Thesis/oneClassSVMident/oneClassSVMident' + feature+ '_results.csv', index = True)
