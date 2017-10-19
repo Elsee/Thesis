@@ -9,6 +9,10 @@ from keras.layers.convolutional import Conv2D
 from keras.layers.convolutional import MaxPooling2D
 from keras.utils import np_utils
 from keras import backend as K
+import gzip
+import six.moves.cPickle as pickle
+import matplotlib, matplotlib.pyplot as plt
+
 K.set_image_dim_ordering('th')
 # fix random seed for reproducibility
 seed = 7
@@ -46,7 +50,25 @@ def larger_model():
 # build the model
 model = larger_model()
 # Fit the model
-model.fit(X_train, y_train, validation_data=(X_test, y_test), nb_epoch=10, batch_size=200)
+test = model.fit(X_train, y_train, validation_data=(X_test, y_test), nb_epoch=10, batch_size=200)
 # Final evaluation of the model
 scores = model.evaluate(X_test, y_test, verbose=0)
-print("CNN Error: %.2f%%" % (100-scores[1]*100))
+
+loss_history = test.history["loss"]
+numpy_loss_history = numpy.array(loss_history)
+numpy.savetxt("./loss_history.txt", numpy_loss_history, delimiter=",")
+
+print(test.history.keys())
+# summarize history 
+plt.plot(test.history['acc'], c='b', lw=1.5)
+plt.plot(test.history['val_acc'], c='r', lw=1.5)
+plt.plot(test.history['loss'], c='g', lw=1.5)
+plt.plot(test.history['val_loss'], c='m', lw=1.5)
+
+plt.title('model accuracy')
+plt.ylabel('loss/accuracy')
+plt.xlabel('epoch')
+plt.legend(['train acc', 'test acc', 'train loss', 'test loss'], loc='upper left')
+plt.tight_layout()
+plt.savefig('./result.jpg', format='jpg')
+plt.close()
