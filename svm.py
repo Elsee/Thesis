@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn import svm
 import numpy as np
 import pandas
+from sklearn.preprocessing import StandardScaler
 
 users = [1,2,3,4,5,6]
 activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
@@ -37,9 +38,9 @@ for feature in features:
             allUsersFeatures.drop(["user"], axis=1, inplace=True)
           
             # Feature Scaling
-            from sklearn.preprocessing import StandardScaler
-            sc = StandardScaler()
-            allUsersFeatures = sc.fit_transform(allUsersFeatures)
+            if (featuresType != "featuresOrigPCA40" and featuresType != "featuresOrigPCA57" and featuresType != "featuresFiltPCA40" and featuresType != "featuresFiltPCA57") :
+                sc = StandardScaler()
+                allUsersFeatures = sc.fit_transform(allUsersFeatures)
             
             currentUserData = pandas.read_csv('E:/Study/ThesisGit/Thesis/myTrainingData/' + featuresType +'_' + activityType + str(userNum) + '.csv', header = 0)
             currentUserData['target'] = 1
