@@ -1,4 +1,4 @@
-from keras.layers import Input, Dense
+from keras.layers import Input, Dense, Flatten, Reshape
 from keras.models import Model
 from keras.regularizers import L1L2
 
@@ -7,32 +7,30 @@ encoding_dim = 32  # 32 floats -> compression of factor 24.5, assuming the input
 lambda_l1 = 0.00001
 
 # this is our input placeholder
-input_img = Input(shape=(784,))
+input_img = Input(shape=(28, 28, 1))
+flat_img = Flatten()(input_img)
 # "encoded" is the encoded representation of the input
-x = Dense(encoding_dim*3, activation='relu')(input_img)
+x = Dense(encoding_dim*3, activation='relu')(flat_img)
 x = Dense(encoding_dim*2, activation='relu')(x)
 encoded = Dense(encoding_dim, activation='linear', activity_regularizer=L1L2(lambda_l1))(x)
 
 # create a placeholder for an encoded (32-dimensional) input
-encoded_input = Input(shape=(encoding_dim,))
-
-x = Dense(encoding_dim*2, activation='relu')(encoded_input)
+input_encoded = Input(shape=(encoding_dim,))
+x = Dense(encoding_dim*2, activation='relu')(input_encoded)
 x = Dense(encoding_dim*3, activation='relu')(x)
-decoded = Dense(784, activation='sigmoid')(x)
-
-# this model maps an input to its reconstruction
-autoencoder = Model(input_img, decoded)
+flat_decoded = Dense(784, activation='sigmoid')(x)
+decoded = Reshape((28, 28, 1))(flat_decoded)
 
 # this model maps an input to its encoded representation
 encoder = Model(input_img, encoded)
 
-
-# retrieve the last layer of the autoencoder model
-decoder_layer = autoencoder.layers[-1]
 # create the decoder model
-decoder = Model(encoded_input, decoder_layer(encoded_input))
+decoder = Model(input_encoded, decoded)
 
-autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
+# this model maps an input to its reconstruction
+autoencoder = Model(input_img, decoder(encoder(input_img)))
+
+autoencoder.compile(optimizer='adam', loss='binary_crossentropy')
 
 from keras.datasets import mnist
 import numpy as np
@@ -40,8 +38,8 @@ import numpy as np
 
 x_train = x_train.astype('float32') / 255.
 x_test = x_test.astype('float32') / 255.
-x_train = x_train.reshape((len(x_train), np.prod(x_train.shape[1:])))
-x_test = x_test.reshape((len(x_test), np.prod(x_test.shape[1:])))
+x_train = np.reshape(x_train, (len(x_train), 28, 28, 1))
+x_test  = np.reshape(x_test,  (len(x_test),  28, 28, 1))
 print(x_train.shape)
 print(x_test.shape)
 
