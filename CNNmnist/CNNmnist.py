@@ -34,9 +34,9 @@ num_classes = y_test.shape[1]
 def larger_model():
 	# create model
 	model = Sequential()
-	model.add(Conv2D(30, 5, 5, input_shape=(1, 28, 28), activation='relu'))
+	model.add(Conv2D(30, (5, 5), input_shape=(1, 28, 28), activation='relu'))
 	model.add(MaxPooling2D(pool_size=(2, 2)))
-	model.add(Conv2D(15, 3, 3, activation='relu'))
+	model.add(Conv2D(15, (3, 3), activation='relu'))
 	model.add(MaxPooling2D(pool_size=(2, 2)))
 	model.add(Dropout(0.2))
 	model.add(Flatten())
@@ -50,25 +50,38 @@ def larger_model():
 # build the model
 model = larger_model()
 # Fit the model
-test = model.fit(X_train, y_train, validation_data=(X_test, y_test), nb_epoch=10, batch_size=200)
+test = model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=10, batch_size=200)
 # Final evaluation of the model
 scores = model.evaluate(X_test, y_test, verbose=0)
 
-loss_history = test.history["loss"]
-numpy_loss_history = numpy.array(loss_history)
-numpy.savetxt("./loss_history.txt", numpy_loss_history, delimiter=",")
+#loss_history = test.history["loss"]
+#numpy_loss_history = numpy.array(loss_history)
+#numpy.savetxt("./loss_history.txt", numpy_loss_history, delimiter=",")
+#
+#print(test.history.keys())
+## summarize history 
+#plt.plot(test.history['acc'], c='b', lw=1.5)
+#plt.plot(test.history['val_acc'], c='r', lw=1.5)
+#plt.plot(test.history['loss'], c='g', lw=1.5)
+#plt.plot(test.history['val_loss'], c='m', lw=1.5)
+#
+#plt.title('model accuracy')
+#plt.ylabel('loss/accuracy')
+#plt.xlabel('epoch')
+#plt.legend(['train acc', 'test acc', 'train loss', 'test loss'], loc='upper left')
+#plt.tight_layout()
+#plt.savefig('./result.jpg', format='jpg')
+#plt.close()
 
-print(test.history.keys())
-# summarize history 
-plt.plot(test.history['acc'], c='b', lw=1.5)
-plt.plot(test.history['val_acc'], c='r', lw=1.5)
-plt.plot(test.history['loss'], c='g', lw=1.5)
-plt.plot(test.history['val_loss'], c='m', lw=1.5)
 
-plt.title('model accuracy')
-plt.ylabel('loss/accuracy')
-plt.xlabel('epoch')
-plt.legend(['train acc', 'test acc', 'train loss', 'test loss'], loc='upper left')
-plt.tight_layout()
-plt.savefig('./result.jpg', format='jpg')
-plt.close()
+
+encoded_imgs = model.predict(X_test)
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+import matplotlib.cm as cm
+
+cm = confusion_matrix(y_test, encoded_imgs)
+plt.matshow(cm)
+plt.colorbar()
+plt.show()
+
