@@ -30,7 +30,7 @@ decoder = Model(input_encoded, decoded)
 # this model maps an input to its reconstruction
 autoencoder = Model(input_img, decoder(encoder(input_img)))
 
-autoencoder.compile(optimizer='adam', loss='binary_crossentropy')
+autoencoder.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
 from keras.datasets import mnist
 import numpy as np
@@ -43,7 +43,7 @@ x_test  = np.reshape(x_test,  (len(x_test),  28, 28, 1))
 print(x_train.shape)
 print(x_test.shape)
 
-autoencoder.fit(x_train, x_train,
+test = autoencoder.fit(x_train, x_train,
                 epochs=100,
                 batch_size=256,
                 shuffle=True,
@@ -72,3 +72,21 @@ for i in range(n):
     ax.get_xaxis().set_visible(False)
     ax.get_yaxis().set_visible(False)
 plt.show()
+
+loss_history = test.history["loss"]
+numpy_loss_history = np.array(loss_history)
+
+print(test.history.keys())
+# summarize history 
+plt.plot(test.history['acc'], c='b', lw=1.5)
+plt.plot(test.history['val_acc'], c='r', lw=1.5)
+plt.plot(test.history['loss'], c='g', lw=1.5)
+plt.plot(test.history['val_loss'], c='m', lw=1.5)
+
+plt.title('model accuracy')
+plt.ylabel('loss/accuracy')
+plt.xlabel('epoch')
+plt.legend(['train acc', 'test acc', 'train loss', 'test loss'], loc='upper left')
+plt.tight_layout()
+plt.savefig('./result.jpg', format='jpg')
+plt.close()
