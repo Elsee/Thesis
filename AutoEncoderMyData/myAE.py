@@ -4,16 +4,17 @@ from keras.regularizers import L1L2
 import pandas as pd
 import glob
 import numpy as np
+from scipy import stats
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 
 # this is the size of our encoded representations
-encoding_dim = 960  # 32 floats -> compression of factor 24.5, assuming the input is 784 floats
+encoding_dim = 76  # 76 floats -> compression of factor 21, assuming the input is 1596 floats
 lambda_l1 = 0.00001
 
 # this is our input placeholder
-input_img = Input(shape=(3923, 57, 1))
+input_img = Input(shape=(28, 57, 1))
 flat_img = Flatten()(input_img)
 # "encoded" is the encoded representation of the input
 x = Dense(encoding_dim*3, activation='relu')(flat_img)
@@ -24,8 +25,8 @@ encoded = Dense(encoding_dim, activation='linear', activity_regularizer=L1L2(lam
 input_encoded = Input(shape=(encoding_dim,))
 x = Dense(encoding_dim*2, activation='relu')(input_encoded)
 x = Dense(encoding_dim*3, activation='relu')(x)
-flat_decoded = Dense(223611, activation='sigmoid')(x)
-decoded = Reshape((3923, 57, 1))(flat_decoded)
+flat_decoded = Dense(1596, activation='sigmoid')(x)
+decoded = Reshape((28, 57, 1))(flat_decoded)
 
 # this model maps an input to its encoded representation
 encoder = Model(input_img, encoded)
@@ -38,46 +39,42 @@ autoencoder = Model(input_img, decoder(encoder(input_img)))
 
 autoencoder.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
+
+
+#DATA LOADING
 filenames = glob.glob('../myTrainingData/featuresOrig_*.csv')
 
 totalData = pd.DataFrame()
     
 for item in filenames:
-    # Load current dataset
     url = item
-    #choose only accelerometer data
     data = pd.read_csv(url, header = 0, engine='python')
     totalData = pd.concat([totalData, data], ignore_index=True)
 
 totalData = totalData.sort_values(['user'], ascending = 1)
 
-totalData.set_index(keys=['user'], drop=False,inplace=True)
-labels=totalData['user'].unique().tolist()
-
-usersData = {}
-usersDataLen = []
-
-for i in labels:
-     usersData["user{0}".format(i)] = totalData.loc[totalData.user==i]
-
-     usersDataLen.append(usersData["user{0}".format(i)].shape[0])
-     
-minUserSamples = min(usersDataLen)
-segments = []
 sc = StandardScaler()
 
-for i in labels:
-    usersData["user{0}".format(i)] = usersData["user{0}".format(i)].head(n=minUserSamples)
-    usersData["user{0}".format(i)] = sc.fit_transform(usersData["user{0}".format(i)])
+numRows = 28
+step = 10
+segments = []
+labels = []
 
-    segments.append(np.array(usersData["user{0}".format(i)][:,:-1]))
+for i in range(0, len(totalData) - numRows, step):
+    label = stats.mode(totalData['user'][i: i + numRows])[0][0]
+    segments.append(np.array(sc.fit_transform(totalData.iloc[i: i + numRows,:-1])))
+    labels.append(label)
+    
+segments = np.asarray(segments, dtype= np.float32)
+labels = np.asarray(labels, dtype= np.float32)
 
-labels = np.asarray(pd.get_dummies(labels), dtype = np.float32)
+
+
 
 x_train, x_test, y_train, y_test = train_test_split(segments, labels, test_size=0.2)
 
-x_train = np.reshape(x_train, (len(x_train), 3923, 57, 1))
-x_test  = np.reshape(x_test,  (len(x_test),  3923, 57, 1))
+x_train = np.reshape(x_train, (len(x_train), 28, 57, 1))
+x_test  = np.reshape(x_test,  (len(x_test),  28, 57, 1))
 print(x_train.shape)
 print(x_test.shape)
 
