@@ -1,0 +1,7 @@
+data = csvread("featuresOrig_Walking1.csv", 1);
+data1 = transp(horzcat(data(:,1:12), data(:,19:27)));
+data2 = transp(data(:,28:36));
+data3 = transp(data(:,13:18));
+data4 = transp(data(:,37:57));
+
+[AE, Error, EncoderOutput] = LBPGFAutoEncoder(data1, data2, data3, data4, 4, 10, 4, 3, 10, 15);

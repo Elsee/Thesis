@@ -10,23 +10,25 @@ from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 
 # this is the size of our encoded representations
-encoding_dim = 76  # 76 floats -> compression of factor 21, assuming the input is 1596 floats
+encoding_dim = 960  # 76 floats -> compression of factor 2, assuming the input is 1140 floats
 lambda_l1 = 0.00001
 
 # this is our input placeholder
-input_img = Input(shape=(28, 57, 1))
+input_img = Input(shape=(57, 57))
 flat_img = Flatten()(input_img)
+
 # "encoded" is the encoded representation of the input
-x = Dense(encoding_dim*3, activation='relu')(flat_img)
-x = Dense(encoding_dim*2, activation='relu')(x)
-encoded = Dense(encoding_dim, activation='linear', activity_regularizer=L1L2(lambda_l1))(x)
+#x = Dense(encoding_dim*3, activation='relu')(flat_img)
+#x = Dense(encoding_dim*2, activation='relu')(x)
+#encoded = Dense(encoding_dim, activation='linear', activity_regularizer=L1L2(lambda_l1))(x)
+encoded = Dense(encoding_dim, activation='sigmoid', activity_regularizer=L1L2(lambda_l1))(flat_img)
 
 # create a placeholder for an encoded (32-dimensional) input
 input_encoded = Input(shape=(encoding_dim,))
-x = Dense(encoding_dim*2, activation='relu')(input_encoded)
-x = Dense(encoding_dim*3, activation='relu')(x)
-flat_decoded = Dense(1596, activation='sigmoid')(x)
-decoded = Reshape((28, 57, 1))(flat_decoded)
+#x = Dense(encoding_dim*2, activation='relu')(input_encoded)
+#x = Dense(encoding_dim*3, activation='relu')(x)
+flat_decoded = Dense(3249, activation='sigmoid')(input_encoded)
+decoded = Reshape((57, 57))(flat_decoded)
 
 # this model maps an input to its encoded representation
 encoder = Model(input_img, encoded)
@@ -37,11 +39,12 @@ decoder = Model(input_encoded, decoded)
 # this model maps an input to its reconstruction
 autoencoder = Model(input_img, decoder(encoder(input_img)))
 
-autoencoder.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy', metrics=['accuracy'])
 
 
-
-#DATA LOADING
+#########################################################################################################
+#####################################DATA LOADING########################################################
+#########################################################################################################
 filenames = glob.glob('../myTrainingData/featuresOrig_*.csv')
 
 totalData = pd.DataFrame()
@@ -51,12 +54,10 @@ for item in filenames:
     data = pd.read_csv(url, header = 0, engine='python')
     totalData = pd.concat([totalData, data], ignore_index=True)
 
-totalData = totalData.sort_values(['user'], ascending = 1)
-
 sc = StandardScaler()
 
-numRows = 28
-step = 10
+numRows = 57
+step = 20
 segments = []
 labels = []
 
@@ -68,13 +69,15 @@ for i in range(0, len(totalData) - numRows, step):
 segments = np.asarray(segments, dtype= np.float32)
 labels = np.asarray(labels, dtype= np.float32)
 
-
+##########################################################################################################
+##########################################################################################################
+##########################################################################################################
 
 
 x_train, x_test, y_train, y_test = train_test_split(segments, labels, test_size=0.2)
 
-x_train = np.reshape(x_train, (len(x_train), 28, 57, 1))
-x_test  = np.reshape(x_test,  (len(x_test),  28, 57, 1))
+x_train = np.reshape(x_train, (len(x_train), 57, 57))
+x_test  = np.reshape(x_test,  (len(x_test),  57, 57))
 print(x_train.shape)
 print(x_test.shape)
 
