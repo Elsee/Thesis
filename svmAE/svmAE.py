@@ -6,7 +6,7 @@ import pandas
 
 users = [1,2,3,4,5,6]
 activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
-features =  ["featuresOrig"]
+features =  ["featuresFilt"]
 
 for feature in features:
     
