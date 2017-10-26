@@ -6,14 +6,13 @@ import pandas
 
 users = [1,2,3,4,5,6]
 activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
-features =  ["featuresOrig", "featuresFilt", "featuresOrigPCA40", "featuresOrigPCA57", "featuresFiltPCA40", "featuresFiltPCA57"]
+features =  ["featuresOrig"]
 
 for feature in features:
     
     for act in activities:
-        curColumn = pandas.DataFrame(np.zeros((7,1)), columns={act})
-        curColumn = curColumn.astype('object')
-        counter = 0
+        sumFRR = 0;
+        sumFAR = 0;
         
         for us in users:
             activityType = act
@@ -21,26 +20,26 @@ for feature in features:
             featuresType = feature
     
             filenames = glob.glob('../AutoEncoderMyData/AEResult_' + featuresType +'_' + activityType + '*.csv')
+            del filenames[us-1]
     
             allUsersFeatures = pandas.DataFrame()
     
             for item in filenames:
                 # Load current dataset
                 url = item
-                dataset = pandas.read_csv(url, header = 0, engine='python')
+                dataset = pandas.read_csv(url, header = None, engine='python')
                 allUsersFeatures = pandas.concat([allUsersFeatures, dataset], ignore_index=True)
         
-            allUsersFeatures.drop(allUsersFeatures[allUsersFeatures.user == userNum].index, inplace=True)
-            allUsersFeatures["user"] = -1
-            impostors = allUsersFeatures["user"]
-            allUsersFeatures.drop(["user"], axis=1, inplace=True)
+            allUsersFeatures["target"] = -1
+            impostors = allUsersFeatures["target"]
+            allUsersFeatures.drop(["target"], axis=1, inplace=True)
             
-            currentUserData = pandas.read_csv('../Thesis/AutoEncoderMyData/AEResult_' + featuresType +'_' + activityType + str(userNum) + '.csv', header = 0)
+            currentUserData = pandas.read_csv('../AutoEncoderMyData/AEResult_' + featuresType +'_' + activityType + str(userNum) + '.csv', header = None)
             currentUserData['target'] = 1
             
             curUserTarget = currentUserData['target']
             
-            currentUserData.drop(["user", "target"], axis=1, inplace=True)
+            currentUserData.drop(["target"], axis=1, inplace=True)
             
             train_data, test_data, train_target, test_target = train_test_split(currentUserData, curUserTarget, train_size = 0.8, test_size = 0.2)  
             
@@ -67,10 +66,18 @@ for feature in features:
             FRR = totalCM[1][0] / (totalCM[1][0] + totalCM[1][1])
             FAR = totalCM[0][1] / (totalCM[0][0] + totalCM[0][1])
             
-            print(FRR, FAR)
+            sumFRR = sumFRR + FRR
+            sumFAR = sumFAR + FAR
             
-            curColumn[act][counter] = [FRR, FAR]
-            counter=counter+1
+            with open(feature + "_result_" + act + ".txt", "a") as myfile:
+                myfile.write("User: " + str(us) + "\nFRR: " + str("%.5f" % FRR) + "\nFAR: " + str("%.5f" % FAR) + "\n\n\n")
+        
+          
+        with open(feature + "_result_" + act + ".txt", "a") as myfile:
+                myfile.write("Mean: \nFRR: " + str("%.5f" % (sumFRR/6)) + "\nFAR: " + str("%.5f" % (sumFAR/6)) + "\n\n\n")
+                
+#            curColumn[act][counter] = [FRR, FAR]
+#            counter=counter+1
 #        
 #        sumFRR = 0;
 #        sumFAR = 0;
