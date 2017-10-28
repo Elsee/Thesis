@@ -69,11 +69,11 @@ for feature in features:
             sumFRR = sumFRR + FRR
             sumFAR = sumFAR + FAR
             
-            with open(feature + "_result_" + act + ".txt", "a") as myfile:
+            with open(feature + "_3layersAEresult_" + act + ".txt", "a") as myfile:
                 myfile.write("User: " + str(us) + "\nFRR: " + str("%.5f" % FRR) + "\nFAR: " + str("%.5f" % FAR) + "\n\n\n")
         
           
-        with open(feature + "_result_" + act + ".txt", "a") as myfile:
+        with open(feature + "_3layersAEresult_" + act + ".txt", "a") as myfile:
                 myfile.write("Mean: \nFRR: " + str("%.5f" % (sumFRR/6)) + "\nFAR: " + str("%.5f" % (sumFAR/6)) + "\n\n\n")
                 
 #            curColumn[act][counter] = [FRR, FAR]
