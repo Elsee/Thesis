@@ -8,13 +8,13 @@ def ae(encoding_layer_dim, input_shape):
     # this is our input placeholder
     input_img = Input(shape=(input_shape,))
     # "encoded" is the encoded representation of the input
-    encoded = Dense(24, activation='relu')(input_img)
-    encoded = Dense(20, activation='relu')(encoded)
+    encoded = Dense(encoding_dim*3, activation='relu')(input_img)
+    encoded = Dense(encoding_dim*2, activation='relu')(encoded)
     encoded = Dense(encoding_dim, activation='linear',
                     activity_regularizer=regularizers.l2(0.00001))(encoded)
     # "decoded" is the lossy reconstruction of the input
-    decoded = Dense(20, activation='relu')(encoded)
-    decoded = Dense(24, activation='relu')(decoded)
+    decoded = Dense(encoding_dim*2, activation='relu')(encoded)
+    decoded = Dense(encoding_dim*3, activation='relu')(decoded)
     decoded = Dense(input_shape, activation='sigmoid')(decoded)
     # this model maps an input to its reconstruction
     autoencoder = Model(input_img, decoded)
