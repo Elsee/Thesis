@@ -9,6 +9,7 @@ def ae(encoding_layer_dim, input_shape):
     input_img = Input(shape=(input_shape,))
     # "encoded" is the encoded representation of the input
     encoded = Dense(encoding_dim*3, activation='relu')(input_img)
+    print('dfgdfg' + encoded)
     encoded = Dense(encoding_dim*2, activation='relu')(encoded)
     encoded = Dense(encoding_dim, activation='linear',
                     activity_regularizer=regularizers.l2(0.00001))(encoded)
