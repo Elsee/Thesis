@@ -7,22 +7,21 @@ from sklearn.preprocessing import StandardScaler
 
 users = [1,2,3,4,5,6]
 activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
-features =  ["featuresOrig", "featuresFilt", "featuresOrigPCA40", "featuresOrigPCA57", "featuresFiltPCA40", "featuresFiltPCA57"]
+features =  ["featuresOrigPCA40", "featuresOrigPCA57", "featuresFiltPCA40", "featuresFiltPCA57"]
 
 for feature in features:
     errTable = pandas.DataFrame()
     
     for act in activities:
-        curColumn = pandas.DataFrame(np.zeros((7,1)), columns={act})
-        curColumn = curColumn.astype('object')
-        counter = 0
+        sumFRR = 0;
+        sumFAR = 0;
         
         for us in users:
             activityType = act
             userNum = us
             featuresType = feature
     
-            filenames = glob.glob('E:/Study/ThesisGit/Thesis/myTrainingData/' + featuresType +'_' + activityType + '*.csv')
+            filenames = glob.glob('./myTrainingData/' + featuresType +'_' + activityType + '#*.csv')
     
             allUsersFeatures = pandas.DataFrame()
     
@@ -38,17 +37,15 @@ for feature in features:
             allUsersFeatures.drop(["user"], axis=1, inplace=True)
           
             # Feature Scaling
-            if (featuresType != "featuresOrigPCA40" and featuresType != "featuresOrigPCA57" and featuresType != "featuresFiltPCA40" and featuresType != "featuresFiltPCA57") :
-                sc = StandardScaler()
-                allUsersFeatures = sc.fit_transform(allUsersFeatures)
+            sc = StandardScaler()
+            allUsersFeatures = sc.fit_transform(allUsersFeatures)
             
-            currentUserData = pandas.read_csv('E:/Study/ThesisGit/Thesis/myTrainingData/' + featuresType +'_' + activityType + str(userNum) + '.csv', header = 0)
+            currentUserData = pandas.read_csv('./myTrainingData/' + featuresType +'_' + activityType + '#' + str(userNum) + '.csv', header = 0)
             currentUserData['target'] = 1
             
             curUserTarget = currentUserData['target']
             
             currentUserData.drop(["user", "target"], axis=1, inplace=True)
-            
             currentUserData = sc.fit_transform(currentUserData)
             
             train_data, test_data, train_target, test_target = train_test_split(currentUserData, curUserTarget, train_size = 0.8, test_size = 0.2)  
@@ -76,26 +73,14 @@ for feature in features:
             FRR = totalCM[1][0] / (totalCM[1][0] + totalCM[1][1])
             FAR = totalCM[0][1] / (totalCM[0][0] + totalCM[0][1])
             
-            curColumn[act][counter] = [FRR, FAR]
-            counter=counter+1
-        
-        sumFRR = 0;
-        sumFAR = 0;
-        
-        for i in [0,1,2,3,4,5]:
-            sumFRR = sumFRR + curColumn[act][i][0]
-            sumFAR = sumFAR + curColumn[act][i][1]
-            
-        curColumn[act][0][0]
-        
-        curColumn[act][6] = [sumFRR/6, sumFAR/6]
-        
-        errTable = errTable.join(curColumn, how='outer')
+            sumFRR = sumFRR + FRR
+            sumFAR = sumFAR + FAR
 
-    last = errTable.index[-1]
-    errTable = errTable.rename(index={last: 'mean'})
-    
-    errTable.to_csv('E:/Study/ThesisGit/Thesis/svmAuth/svmAuth' + feature+ '_results.csv', index = True)
-
+            with open('./svmAuth/' + feature + "_svmResults_" + act + ".txt", "a") as myfile:
+                myfile.write("User: " + str(us) + "\nFRR: " + str("%.5f" % FRR) + "\nFAR: " + str("%.5f" % FAR) + "\n\n\n")
+        
+          
+        with open('./svmAuth/' + feature + "_svmResults_" + act + ".txt", "a") as myfile:
+                myfile.write("Mean: \nFRR: " + str("%.5f" % (sumFRR/6)) + "\nFAR: " + str("%.5f" % (sumFAR/6)) + "\n\n\n")
             
             

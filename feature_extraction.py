@@ -30,11 +30,11 @@ def extractFatures(uN, aT):
     userNum = uN
     activityType = aT
     names = ['accx', 'accy', 'accz']
-    dataset = pandas.read_csv('D:/Study/Thesis/System/myProcessedData/total_' + activityType + str(userNum) + '.csv', header = 0, names=names)
+    dataset = pandas.read_csv('./myProcessedData/total_' + activityType + '#' + str(userNum) + '.csv', header = 0, names=names)
     
     #showPlot(dataset)
     
-    smoothed = pandas.read_csv('D:/Study/Thesis/System/myProcessedData/movingAvg_' + activityType + str(userNum) + '.csv', header = 0, names=names)
+    smoothed = pandas.read_csv('./myProcessedData/movingAvg_' + activityType + '#' + str(userNum) + '.csv', header = 0, names=names)
     
     step = int(math.floor(50 * 0.7))
     
@@ -280,8 +280,8 @@ def extractFatures(uN, aT):
     tFeaturesOrig['user'] = userNum
     tFeaturesFilt['user'] = userNum
     
-    tFeaturesOrig.to_csv('D:/Study/Thesis/System/myTrainingData/featuresOrig_' + activityType + str(userNum) + '.csv', index = False)
-    tFeaturesFilt.to_csv('D:/Study/Thesis/System/myTrainingData/featuresFilt_' + activityType + str(userNum) + '.csv', index = False)
+    tFeaturesOrig.to_csv('./myTrainingData/featuresOrig_' + activityType + '#' + str(userNum) + '.csv', index = False)
+    tFeaturesFilt.to_csv('./myTrainingData/featuresFilt_' + activityType + '#' + str(userNum) + '.csv', index = False)
 
 users = [1,2,3,4,5,6]
 activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"] 

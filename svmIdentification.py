@@ -9,17 +9,18 @@ import glob
 # Importing the dataset
 
 activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
-features =  ["featuresOrig", "featuresFilt", "featuresOrigPCA40", "featuresOrigPCA57", "featuresFiltPCA40", "featuresFiltPCA57"]
+features =  ["featuresOrigPCA40", "featuresOrigPCA57", "featuresFiltPCA40", "featuresFiltPCA57"]
 
 for feature in features:
-    errTable = pd.DataFrame()
     
     for act in activities:
+        sumFRR = 0;
+        sumFAR = 0;
         
         activityType = act
         featuresType = feature
 
-        filenames = glob.glob('E:/Study/ThesisGit/Thesis/myTrainingData/' + featuresType +'_' + activityType + '*.csv')
+        filenames = glob.glob('./myTrainingData/' + featuresType +'_' + activityType + '#*.csv')
         dataset = pd.DataFrame()
             
         for item in filenames:
@@ -63,23 +64,13 @@ for feature in features:
             FRR = (cm[i,:].sum() - cm[i][i])/cm[i,:].sum()
             FAR = (cm[:,i].sum() - cm[i][i])/(cm[:,:].sum() - cm[i,:].sum())
             
-            curColumn[act][i] = [FRR, FAR]
+            with open('./svmIdent/' + feature + "svmIdent" + act + ".txt", "a") as myfile:
+                myfile.write("User: " + str(i) + "\nFRR: " + str("%.5f" % FRR) + "\nFAR: " + str("%.5f" % FAR) + "\n\n\n") 
             
-        sumFRR = 0;
-        sumFAR = 0;
-        
-        for i in range(0, user_number):
-            sumFRR = sumFRR + curColumn[act][i][0]
-            sumFAR = sumFAR + curColumn[act][i][1]
-            
-        curColumn[act][0][0]
-        
-        curColumn[act][6] = [sumFRR/6, sumFAR/6]
-        
-        errTable = errTable.join(curColumn, how='outer')
-
-    last = errTable.index[-1]
-    errTable = errTable.rename(index={last: 'mean'})
+            sumFRR = sumFRR + FRR
+            sumFAR = sumFAR + FAR                                                        
     
-    errTable.to_csv('E:/Study/ThesisGit/Thesis/svmIdent/svmIdent' + feature+ '_results.csv', index = True)
+    
+        with open('./svmIdent/' + feature + "svmIdent" + act + ".txt", "a") as myfile:
+                myfile.write("Mean: \nFRR: " + str("%.5f" % (sumFRR/6)) + "\nFAR: " + str("%.5f" % (sumFAR/6)) + "\n\n\n")
     
