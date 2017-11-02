@@ -41,7 +41,7 @@ for feature in features:
         
         for us in users:
 
-            totalData = pd.read_csv('../myTrainingData/' + feature + '_' + act + str(us) + '.csv');
+            totalData = pd.read_csv('../myTrainingData/' + feature + '_' + act + '#' + str(us) + '.csv');
             totalData.drop(["user"], axis=1, inplace=True)
             totalData = sc.fit_transform(np.asarray(totalData, dtype= np.float32));
             
@@ -83,25 +83,25 @@ for feature in features:
             autoencoder_wavelet.compile(optimizer='adadelta', loss='mean_squared_error', metrics=['accuracy'])
             
             test_stat = autoencoder_stat.fit(x_train_stat, x_train_stat,
-                            epochs=6000,
+                            epochs=3000,
                             batch_size=256,
                             shuffle=True,
                             validation_data=(x_test_stat, x_test_stat))
             
             test_time = autoencoder_time.fit(x_train_time, x_train_time,
-                            epochs=6000,
+                            epochs=3000,
                             batch_size=256,
                             shuffle=True,
                             validation_data=(x_test_time, x_test_time))
             
             test_fft = autoencoder_fft.fit(x_train_fft, x_train_fft,
-                            epochs=6000,
+                            epochs=3000,
                             batch_size=256,
                             shuffle=True,
                             validation_data=(x_test_fft, x_test_fft))
             
             test_wavelet = autoencoder_wavelet.fit(x_train_wavelet, x_train_wavelet,
-                            epochs=6000,
+                            epochs=3000,
                             batch_size=256,
                             shuffle=True,
                             validation_data=(x_test_wavelet, x_test_wavelet))
@@ -121,17 +121,14 @@ for feature in features:
             autoencoder_fused.compile(optimizer='adadelta', loss='mean_squared_error', metrics=['accuracy'])
             
             test_fused = autoencoder_fused.fit(x_train_fused, x_train_fused,
-                            epochs=6000,
+                            epochs=3000,
                             batch_size=256,
                             shuffle=True,
                             validation_data=(x_test_fused, x_test_fused))
             
             encoded_fused = encoder_fused.predict(concat_encoded)
-            np.savetxt("./AEResult_" + feature + "_" + act + str(us) +".csv", encoded_fused, delimiter=',')
-            
-            plt.plot(waveletData, c='r', lw=1.5)
-            plt.title('Wawelet features')
-            
+            np.savetxt("./AEResult_" + feature + "_" + act + '#' + str(us) +".csv", encoded_fused, delimiter=',')
+
             #import matplotlib.pyplot as plt
             #
             #def result_graph(test_type, name):

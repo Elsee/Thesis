@@ -43,7 +43,7 @@ for feature in features:
         
         for us in users:
 
-            totalData = pd.read_csv('../myTrainingData/' + feature + '_' + act + str(us) + '.csv');
+            totalData = pd.read_csv('../myTrainingData/' + feature + '_' + act + '#' + str(us) + '.csv');
             totalData.drop(["user"], axis=1, inplace=True)
             totalData = sc.fit_transform(np.asarray(totalData, dtype= np.float32));
             
@@ -129,7 +129,7 @@ for feature in features:
                             validation_data=(x_test_fused, x_test_fused))
             
             encoded_fused = encoder_fused.predict(concat_encoded)
-            np.savetxt("./AEResult_" + feature + "_" + act + str(us) +".csv", encoded_fused, delimiter=',')
+            np.savetxt("./AEResult_" + feature + "_" + act + '#' + str(us) +".csv", encoded_fused, delimiter=',')
             
             
             if (feature == "featuresOrig" and act == "Jogging"):
