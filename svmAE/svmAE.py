@@ -6,35 +6,35 @@ import pandas
 
 users = [1,2,3,4,5,6]
 activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
-features =  ["featuresOrig", "featuresFilt"]
+features =  ["featuresFilt", "featuresOrig"]
 
 for feature in features:
-    
+
     for act in activities:
         sumFRR = 0;
         sumFAR = 0;
-        
+
         for us in users:
             activityType = act
             userNum = us
             featuresType = feature
-    
-            filenames = glob.glob('../AutoEncoderMyData/AEResult_' + featuresType +'_' + activityType + '#*.csv')
+
+            filenames = glob.glob('../AutoEncoderMyData/results5AEdeep/AEResult_' + featuresType +'_' + activityType + '#*.csv')
             del filenames[us-1]
-    
+
             allUsersFeatures = pandas.DataFrame()
-    
+
             for item in filenames:
                 # Load current dataset
                 url = item
                 dataset = pandas.read_csv(url, header = None, engine='python')
                 allUsersFeatures = pandas.concat([allUsersFeatures, dataset], ignore_index=True)
-        
+
             allUsersFeatures["target"] = -1
             impostors = allUsersFeatures["target"]
             allUsersFeatures.drop(["target"], axis=1, inplace=True)
-            
-            currentUserData = pandas.read_csv('../AutoEncoderMyData/AEResult_' + featuresType +'_' + activityType + '#' + str(userNum) + '.csv', header = None)
+
+            currentUserData = pandas.read_csv('../AutoEncoderMyData/results5AEdeep/AEResult_' + featuresType +'_' + activityType + '#' + str(userNum) + '.csv', header = None)
             currentUserData['target'] = 1
             
             curUserTarget = currentUserData['target']

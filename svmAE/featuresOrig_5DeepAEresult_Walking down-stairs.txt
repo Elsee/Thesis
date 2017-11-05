@@ -33,3 +33,283 @@ FRR: 0.16047
 FAR: 0.04457
 
 
+User: 1
+FRR: 0.09375
+FAR: 0.26155
+
+
+User: 2
+FRR: 0.14286
+FAR: 0.34818
+
+
+User: 3
+FRR: 0.12987
+FAR: 0.41914
+
+
+User: 4
+FRR: 0.16471
+FAR: 0.41109
+
+
+User: 5
+FRR: 0.06061
+FAR: 0.26787
+
+
+User: 6
+FRR: 0.14851
+FAR: 0.58999
+
+
+Mean: 
+FRR: 0.12338
+FAR: 0.38297
+
+
+User: 1
+FRR: 0.12500
+FAR: 0.21018
+
+
+User: 2
+FRR: 0.10204
+FAR: 0.45622
+
+
+User: 3
+FRR: 0.14286
+FAR: 0.40457
+
+
+User: 4
+FRR: 0.08235
+FAR: 0.30807
+
+
+User: 5
+FRR: 0.15152
+FAR: 0.28301
+
+
+User: 6
+FRR: 0.13861
+FAR: 0.54513
+
+
+Mean: 
+FRR: 0.12373
+FAR: 0.36786
+
+
+User: 1
+FRR: 0.53125
+FAR: 0.22620
+
+
+User: 2
+FRR: 0.48980
+FAR: 0.00666
+
+
+User: 3
+FRR: 0.50649
+FAR: 0.21807
+
+
+User: 4
+FRR: 0.48235
+FAR: 0.01981
+
+
+User: 5
+FRR: 0.56061
+FAR: 0.20729
+
+
+User: 6
+FRR: 0.51485
+FAR: 0.02321
+
+
+Mean: 
+FRR: 0.51422
+FAR: 0.11687
+
+
+User: 1
+FRR: 0.39062
+FAR: 0.49482
+
+
+User: 2
+FRR: 0.34694
+FAR: 0.01280
+
+
+User: 3
+FRR: 0.06494
+FAR: 0.89364
+
+
+User: 4
+FRR: 0.14118
+FAR: 0.75978
+
+
+User: 5
+FRR: 0.10606
+FAR: 0.87743
+
+
+User: 6
+FRR: 0.29703
+FAR: 0.10469
+
+
+Mean: 
+FRR: 0.22446
+FAR: 0.52386
+
+
+User: 1
+FRR: 0.18750
+FAR: 0.78087
+
+
+User: 2
+FRR: 0.29592
+FAR: 0.55044
+
+
+User: 3
+FRR: 0.09091
+FAR: 0.90141
+
+
+User: 4
+FRR: 0.10588
+FAR: 0.84497
+
+
+User: 5
+FRR: 0.07576
+FAR: 0.88121
+
+
+User: 6
+FRR: 0.11881
+FAR: 0.66684
+
+
+Mean: 
+FRR: 0.14580
+FAR: 0.77096
+
+
+User: 1
+FRR: 0.10938
+FAR: 0.06221
+
+
+User: 2
+FRR: 0.18367
+FAR: 0.18280
+
+
+User: 3
+FRR: 0.16883
+FAR: 0.08596
+
+
+User: 4
+FRR: 0.09412
+FAR: 0.12531
+
+
+User: 5
+FRR: 0.13636
+FAR: 0.09513
+
+
+User: 6
+FRR: 0.19802
+FAR: 0.18154
+
+
+Mean: 
+FRR: 0.14840
+FAR: 0.12216
+
+
+User: 1
+FRR: 0.21875
+FAR: 0.06032
+
+
+User: 2
+FRR: 0.08163
+FAR: 0.18228
+
+
+User: 3
+FRR: 0.12987
+FAR: 0.08936
+
+
+User: 4
+FRR: 0.28235
+FAR: 0.11194
+
+
+User: 5
+FRR: 0.19697
+FAR: 0.09844
+
+
+User: 6
+FRR: 0.10891
+FAR: 0.17690
+
+
+Mean: 
+FRR: 0.16975
+FAR: 0.11987
+
+
+User: 1
+FRR: 0.20312
+FAR: 0.06456
+
+
+User: 2
+FRR: 0.21429
+FAR: 0.18331
+
+
+User: 3
+FRR: 0.19481
+FAR: 0.08985
+
+
+User: 4
+FRR: 0.08235
+FAR: 0.12580
+
+
+User: 5
+FRR: 0.15152
+FAR: 0.09418
+
+
+User: 6
+FRR: 0.14851
+FAR: 0.17999
+
+
+Mean: 
+FRR: 0.16577
+FAR: 0.12295
+
+

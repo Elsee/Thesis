@@ -33,3 +33,388 @@ FRR: 0.12810
 FAR: 0.27134
 
 
+User: 1
+FRR: 0.10300
+FAR: 0.23380
+
+
+User: 2
+FRR: 0.11966
+FAR: 0.16607
+
+
+User: 3
+FRR: 0.09053
+FAR: 0.17358
+
+
+User: 4
+FRR: 0.07359
+FAR: 0.28581
+
+
+User: 5
+FRR: 0.10407
+FAR: 0.26405
+
+
+User: 6
+FRR: 0.12450
+FAR: 0.28847
+
+
+Mean: 
+FRR: 0.10256
+FAR: 0.23530
+
+
+User: 1
+FRR: 0.08584
+FAR: 0.18313
+
+
+User: 2
+FRR: 0.12821
+FAR: 0.12915
+
+
+User: 3
+FRR: 0.12346
+FAR: 0.24751
+
+
+User: 4
+FRR: 0.08225
+FAR: 0.19756
+
+
+User: 5
+FRR: 0.08145
+FAR: 0.10367
+
+
+User: 6
+FRR: 0.08835
+FAR: 0.30708
+
+
+Mean: 
+FRR: 0.09826
+FAR: 0.19468
+
+
+User: 1
+FRR: 0.49946
+FAR: 0.50000
+
+
+User: 2
+FRR: 0.49983
+FAR: 0.50000
+
+
+User: 3
+FRR: 0.49979
+FAR: 0.50000
+
+
+User: 4
+FRR: 0.50029
+FAR: 0.50000
+
+
+User: 5
+FRR: 0.50054
+FAR: 0.50000
+
+
+User: 6
+FRR: 0.49962
+FAR: 0.50000
+
+
+Mean: 
+FRR: 0.49992
+FAR: 0.50000
+
+
+User: 1
+FRR: 0.37339
+FAR: 0.00102
+
+
+User: 2
+FRR: 0.49883
+FAR: 0.50000
+
+
+User: 3
+FRR: 0.08642
+FAR: 0.22230
+
+
+User: 4
+FRR: 0.49613
+FAR: 0.50000
+
+
+User: 5
+FRR: 0.34842
+FAR: 0.00017
+
+
+User: 6
+FRR: 0.28916
+FAR: 0.00724
+
+
+Mean: 
+FRR: 0.34872
+FAR: 0.20512
+
+
+User: 1
+FRR: 0.08584
+FAR: 0.88029
+
+
+User: 2
+FRR: 0.16239
+FAR: 0.80245
+
+
+User: 3
+FRR: 0.04938
+FAR: 0.90086
+
+
+User: 4
+FRR: 0.19481
+FAR: 0.83707
+
+
+User: 5
+FRR: 0.17195
+FAR: 0.80175
+
+
+User: 6
+FRR: 0.16064
+FAR: 0.72618
+
+
+Mean: 
+FRR: 0.13750
+FAR: 0.82477
+
+
+User: 1
+FRR: 0.16738
+FAR: 0.42068
+
+
+User: 2
+FRR: 0.12393
+FAR: 0.47677
+
+
+User: 3
+FRR: 0.18519
+FAR: 0.45557
+
+
+User: 4
+FRR: 0.11255
+FAR: 0.43500
+
+
+User: 5
+FRR: 0.11765
+FAR: 0.44867
+
+
+User: 6
+FRR: 0.10442
+FAR: 0.43098
+
+
+Mean: 
+FRR: 0.13519
+FAR: 0.44461
+
+
+User: 1
+FRR: 0.14163
+FAR: 0.41643
+
+
+User: 2
+FRR: 0.15812
+FAR: 0.46997
+
+
+User: 3
+FRR: 0.13580
+FAR: 0.45334
+
+
+User: 4
+FRR: 0.17749
+FAR: 0.41802
+
+
+User: 5
+FRR: 0.15837
+FAR: 0.43790
+
+
+User: 6
+FRR: 0.10442
+FAR: 0.43684
+
+
+Mean: 
+FRR: 0.14597
+FAR: 0.43875
+
+
+User: 1
+FRR: 0.09442
+FAR: 0.41949
+
+
+User: 2
+FRR: 0.16667
+FAR: 0.46622
+
+
+User: 3
+FRR: 0.14815
+FAR: 0.46021
+
+
+User: 4
+FRR: 0.12121
+FAR: 0.42634
+
+
+User: 5
+FRR: 0.12217
+FAR: 0.45523
+
+
+User: 6
+FRR: 0.09237
+FAR: 0.43167
+
+
+Mean: 
+FRR: 0.12416
+FAR: 0.44319
+
+
+User: 1
+FRR: 0.14592
+FAR: 0.30250
+
+
+User: 2
+FRR: 0.10684
+FAR: 0.24843
+
+
+User: 3
+FRR: 0.15226
+FAR: 0.32230
+
+
+User: 4
+FRR: 0.12554
+FAR: 0.25492
+
+
+User: 5
+FRR: 0.16742
+FAR: 0.23746
+
+
+User: 6
+FRR: 0.09237
+FAR: 0.28072
+
+
+Mean: 
+FRR: 0.13173
+FAR: 0.27439
+
+
+User: 1
+FRR: 0.51502
+FAR: 0.50553
+
+
+User: 2
+FRR: 0.50855
+FAR: 0.52135
+
+
+User: 3
+FRR: 0.52675
+FAR: 0.44202
+
+
+User: 4
+FRR: 0.49784
+FAR: 0.51527
+
+
+User: 5
+FRR: 0.47964
+FAR: 0.42225
+
+
+User: 6
+FRR: 0.46988
+FAR: 0.31346
+
+
+Mean: 
+FRR: 0.49961
+FAR: 0.45331
+
+
+User: 1
+FRR: 0.09871
+FAR: 0.30726
+
+
+User: 2
+FRR: 0.12393
+FAR: 0.25064
+
+
+User: 3
+FRR: 0.08642
+FAR: 0.31887
+
+
+User: 4
+FRR: 0.10823
+FAR: 0.25645
+
+
+User: 5
+FRR: 0.10407
+FAR: 0.24184
+
+
+User: 6
+FRR: 0.12450
+FAR: 0.28175
+
+
+Mean: 
+FRR: 0.10764
+FAR: 0.27613
+
+

@@ -8,14 +8,10 @@ def ae(encoding_layer_dim, input_shape):
     # this is our input placeholder
     input_img = Input(shape=(input_shape,))
     # "encoded" is the encoded representation of the input
-    encoded = Dense(24, activation='relu')(input_img)
-    encoded = Dense(20, activation='relu')(encoded)
-    encoded = Dense(encoding_dim, activation='linear',
-                    activity_regularizer=regularizers.l2(0.00001))(encoded)
+    encoded = Dense(encoding_dim, activation='relu',
+                    activity_regularizer=regularizers.l2(0.00001))(input_img)
     # "decoded" is the lossy reconstruction of the input
-    decoded = Dense(20, activation='relu')(encoded)
-    decoded = Dense(24, activation='relu')(decoded)
-    decoded = Dense(input_shape, activation='sigmoid')(decoded)
+    decoded = Dense(input_shape, activation='sigmoid')(encoded)
     # this model maps an input to its reconstruction
     autoencoder = Model(input_img, decoded)
     # this model maps an input to its encoded representation
@@ -23,7 +19,7 @@ def ae(encoding_layer_dim, input_shape):
     # create a placeholder for an encoded input
     encoded_input = Input(shape=(encoding_dim,))
     # retrieve the last layer of the autoencoder model
-    decoder_layer = autoencoder.layers[-3]
+    decoder_layer = autoencoder.layers[-1]
     # create the decoder model
     decoder = Model(encoded_input, decoder_layer(encoded_input))
     return autoencoder, encoder, decoder
@@ -101,7 +97,7 @@ for feature in features:
                             validation_data=(x_test_fused, x_test_fused))
             
             encoded_fused = encoder_fused.predict(concat_encoded)
-            np.savetxt("./AEResult_" + feature + "_" + act + '#' + str(us) +".csv", encoded_fused, delimiter=',')
+            np.savetxt("./results3AE/AEResult_" + feature + "_" + act + '#' + str(us) +".csv", encoded_fused, delimiter=',')
             
             
             if (feature == "featuresOrig" and act == "Jogging"):
@@ -119,7 +115,7 @@ for feature in features:
                     plt.xlabel('epoch')
                     plt.legend(['train acc', 'test acc', 'train loss', 'test loss'], loc='upper left')
                     plt.tight_layout()
-                    plt.savefig('./graphs/' + name + str(us) + '_result.jpg', format='jpg')
+                    plt.savefig('./results3AE/graphs/' + name + str(us) + '_result.jpg', format='jpg')
                     plt.close()
                     
                 result_graph(test_stat_time, ("statistical and time"))

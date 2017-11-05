@@ -12,7 +12,7 @@ def gridSearchSVM(feat, act, us):
     activityType = act
     userNum = us
     
-    filenames = glob.glob('D:/Study/Thesis/System/myTrainingData/' + featureType + '_' + activityType + '*.csv')
+    filenames = glob.glob('./myTrainingData/' + featureType + '_' + activityType + '#*.csv')
     allUsersFeatures = pandas.DataFrame()
     
     for item in filenames:
@@ -29,7 +29,7 @@ def gridSearchSVM(feat, act, us):
     sc = StandardScaler()
     allUsersFeatures = sc.fit_transform(allUsersFeatures)
     
-    currentUserData = pandas.read_csv('D:/Study/Thesis/System/myTrainingData/' + featureType + '_' + activityType + str(userNum) + '.csv', header = 0)
+    currentUserData = pandas.read_csv('./myTrainingData/' + featureType + '_' + activityType + '#' + str(userNum) + '.csv', header = 0)
     currentUserData['target'] = 1
     
     curUserTarget = currentUserData['target']
@@ -40,7 +40,7 @@ def gridSearchSVM(feat, act, us):
     
     train_data, test_data, train_target, test_target = train_test_split(currentUserData, curUserTarget, train_size = 0.8, test_size = 0.2)  
     
-    model = svm.OneClassSVM(nu=0.01, kernel='rbf', gamma=0.6)  
+    model = svm.OneClassSVM(kernel='rbf', random_state = 0)  
     model.fit(train_data) 
     
     # Predicting the Test set results
@@ -69,7 +69,7 @@ def gridSearchSVM(feat, act, us):
     best_parameters = grid_search.best_params_
     
 
-    with open('D:/Study/Thesis/System/gridSearchSVMresults.txt','a') as f:
+    with open('./gridSearchSVMresults.txt','a') as f:
         f.write('Best parameters for ' + featureType + ' of user number ' + str(userNum) + ' doing activity ' + activityType + ': ' + str(best_parameters) + '. Best accuracy: ' + str(best_accuracy) + '\n')
 
 

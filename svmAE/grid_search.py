@@ -11,7 +11,7 @@ def gridSearchSVM(feat, act, us):
     activityType = act
     userNum = us
     
-    currentUserData = pandas.read_csv('../AutoEncoderMyData/AEResult_' + featureType + '_' + activityType + str(userNum) + '.csv', header = 0)
+    currentUserData = pandas.read_csv('../AutoEncoderMyData/AEResult_' + featureType + '_' + activityType + '#' + str(userNum) + '.csv', header = 0)
     currentUserData['target'] = 1
     
     curUserTarget = currentUserData['target']
@@ -38,8 +38,8 @@ def gridSearchSVM(feat, act, us):
     
     # Applying Grid Search to find the best model and the best parameters
     from sklearn.model_selection import GridSearchCV
-    parameters = [{'nu': [0.1, 0.5, 0.6, 0.7, 0.8, 0.9, 0.99], 'kernel': ['linear']},
-                  {'nu': [0.1, 0.5, 0.6, 0.7, 0.8, 0.9, 0.99], 'kernel': ['rbf'], 'gamma': [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]}]
+    parameters = [{'nu': [0.01, 0.05, 0.1, 0.5, 0.6, 0.7, 0.8, 0.9, 0.99], 'kernel': ['linear']},
+                  {'nu': [0.01, 0.05, 0.1, 0.5, 0.6, 0.7, 0.8, 0.9, 0.99], 'kernel': ['rbf'], 'gamma': [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 'auto']}]
     grid_search = GridSearchCV(estimator = model,
                                param_grid = parameters,
                                scoring = 'accuracy',
@@ -54,7 +54,7 @@ def gridSearchSVM(feat, act, us):
 
 
 users = [1,2,3,4,5,6]
-activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
+activities = ["Walking"]
 features =  ["featuresOrig", "featuresFilt"]
 
 for feature in features:

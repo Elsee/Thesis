@@ -50,7 +50,7 @@ for feature in features:
             
             train_data, test_data, train_target, test_target = train_test_split(currentUserData, curUserTarget, train_size = 0.8, test_size = 0.2)  
             
-            model = svm.OneClassSVM(nu=0.1, kernel='linear')  
+            model = svm.OneClassSVM(kernel = 'rbf', random_state = 0)  
             y_score = model.fit(train_data).decision_function(test_data) 
             
             y_pred_train =  model.predict(train_data) 

@@ -9,7 +9,7 @@ import glob
 # Importing the dataset
 
 activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
-features =  ["featuresOrigPCA40", "featuresOrigPCA57", "featuresFiltPCA40", "featuresFiltPCA57"]
+features =  ["featuresOrig", "featuresFilt", "featuresOrigPCA40", "featuresOrigPCA57", "featuresFiltPCA40", "featuresFiltPCA57"]
 
 for feature in features:
     
@@ -45,7 +45,7 @@ for feature in features:
         
         # Fitting Kernel SVM to the Training set
         from sklearn.svm import SVC
-        classifier = SVC(kernel = 'rbf', random_state = 0)
+        classifier = SVC(kernel = 'linear', random_state = 0)
         classifier.fit(X_train, y_train)
         
         # Predicting the Test set results
