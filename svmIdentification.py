@@ -45,7 +45,7 @@ for feature in features:
         
         # Fitting Kernel SVM to the Training set
         from sklearn.svm import SVC
-        classifier = SVC(kernel = 'linear', random_state = 0)
+        classifier = SVC(C=10, kernel = 'linear', random_state = 0)
         classifier.fit(X_train, y_train)
         
         # Predicting the Test set results

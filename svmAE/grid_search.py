@@ -11,7 +11,7 @@ def gridSearchSVM(feat, act, us):
     activityType = act
     userNum = us
     
-    currentUserData = pandas.read_csv('../AutoEncoderMyData/AEResult_' + featureType + '_' + activityType + '#' + str(userNum) + '.csv', header = 0)
+    currentUserData = pandas.read_csv('../AutoEncoderMyData/results5AEdeep/AEResult_' + featureType + '_' + activityType + '#' + str(userNum) + '.csv', header = 0)
     currentUserData['target'] = 1
     
     curUserTarget = currentUserData['target']
@@ -49,7 +49,7 @@ def gridSearchSVM(feat, act, us):
     best_parameters = grid_search.best_params_
     
 
-    with open('./gridSearchSVMresults.txt','a') as f:
+    with open('./gridSearchSVMresults_5AEdeep.txt','a') as f:
         f.write('Best parameters for ' + featureType + ' of user number ' + str(userNum) + ' doing activity ' + activityType + ': ' + str(best_parameters) + '. Best accuracy: ' + str(best_accuracy) + '\n')
 
 
