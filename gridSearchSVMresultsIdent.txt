@@ -17,3 +17,4 @@ Best parameters for featuresFilt of users doing activity Running: {'C': 10, 'ker
 Best parameters for featuresFilt of users doing activity Walking down-stairs: {'C': 1, 'kernel': 'linear'}. Best accuracy: 0.985655737705
 Best parameters for featuresFilt of users doing activity Walking up-stairs: {'C': 10, 'kernel': 'linear'}. Best accuracy: 0.99672744273
 Best parameters for featuresFilt of users doing activity Walking: {'C': 1, 'kernel': 'linear'}. Best accuracy: 0.997520368402
+Best parameters for featuresFilt of users doing activity Jogging: {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}. Best accuracy: 0.981547196593

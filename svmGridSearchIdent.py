@@ -65,8 +65,7 @@ def gridSearchSVM(feat, act):
     with open('./gridSearchSVMresultsIdent.txt','a') as f:
         f.write('Best parameters for ' + featureType + ' of users doing activity ' + activityType + ': ' + str(best_parameters) + '. Best accuracy: ' + str(best_accuracy) + '\n')
 
-
-activities = ["Jogging"]
+activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
 features =  ["featuresFilt"]
 
 for feature in features:

@@ -54,8 +54,8 @@ def gridSearchSVM(feat, act, us):
 
 
 users = [1,2,3,4,5,6]
-activities = ["Walking"]
-features =  ["featuresOrig", "featuresFilt"]
+activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
+features =  ["featuresFilt"]
 
 for feature in features:
     for act in activities:
