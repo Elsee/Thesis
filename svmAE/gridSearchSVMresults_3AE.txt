@@ -1,0 +1,30 @@
+Best parameters for featuresFilt of user number 1 doing activity Jogging: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.984946236559
+Best parameters for featuresFilt of user number 2 doing activity Jogging: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.989281886388
+Best parameters for featuresFilt of user number 3 doing activity Jogging: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.987641606591
+Best parameters for featuresFilt of user number 4 doing activity Jogging: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.982627578719
+Best parameters for featuresFilt of user number 5 doing activity Jogging: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.986379114642
+Best parameters for featuresFilt of user number 6 doing activity Jogging: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.987903225806
+Best parameters for featuresFilt of user number 1 doing activity Running: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.971875
+Best parameters for featuresFilt of user number 2 doing activity Running: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.975177304965
+Best parameters for featuresFilt of user number 3 doing activity Running: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.969512195122
+Best parameters for featuresFilt of user number 4 doing activity Running: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.974264705882
+Best parameters for featuresFilt of user number 5 doing activity Running: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.977272727273
+Best parameters for featuresFilt of user number 6 doing activity Running: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.981233243968
+Best parameters for featuresFilt of user number 1 doing activity Walking down-stairs: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.964566929134
+Best parameters for featuresFilt of user number 2 doing activity Walking down-stairs: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.982005141388
+Best parameters for featuresFilt of user number 3 doing activity Walking down-stairs: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.986842105263
+Best parameters for featuresFilt of user number 4 doing activity Walking down-stairs: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.970238095238
+Best parameters for featuresFilt of user number 5 doing activity Walking down-stairs: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.965517241379
+Best parameters for featuresFilt of user number 6 doing activity Walking down-stairs: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.9825
+Best parameters for featuresFilt of user number 1 doing activity Walking up-stairs: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.979768786127
+Best parameters for featuresFilt of user number 2 doing activity Walking up-stairs: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.982051282051
+Best parameters for featuresFilt of user number 3 doing activity Walking up-stairs: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.976539589443
+Best parameters for featuresFilt of user number 4 doing activity Walking up-stairs: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.974576271186
+Best parameters for featuresFilt of user number 5 doing activity Walking up-stairs: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.982456140351
+Best parameters for featuresFilt of user number 6 doing activity Walking up-stairs: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.975961538462
+Best parameters for featuresFilt of user number 1 doing activity Walking: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.984749455338
+Best parameters for featuresFilt of user number 2 doing activity Walking: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.988421052632
+Best parameters for featuresFilt of user number 3 doing activity Walking: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.988445378151
+Best parameters for featuresFilt of user number 4 doing activity Walking: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.984093319194
+Best parameters for featuresFilt of user number 5 doing activity Walking: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.986531986532
+Best parameters for featuresFilt of user number 6 doing activity Walking: {'kernel': 'linear', 'nu': 0.01}. Best accuracy: 0.98578680203

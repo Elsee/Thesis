@@ -4,15 +4,18 @@ from sklearn import svm
 import numpy as np
 import pandas
 from sklearn.preprocessing import StandardScaler
+from time import gmtime, strftime
 
 users = [1,2,3,4,5,6]
 activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
 features =  ["featuresOrig", "featuresFilt", "featuresOrigPCA40", "featuresOrigPCA57", "featuresFiltPCA40", "featuresFiltPCA57"]
 
 for feature in features:
-    errTable = pandas.DataFrame()
     
     for act in activities:
+        with open('./svmAuth/' + feature + "_svmResults_" + act + ".txt", "a") as myfile:
+                myfile.write(strftime("%Y-%m-%d %H:%M:%S", gmtime()) + "\n\n\n")
+                
         sumFRR = 0;
         sumFAR = 0;
         

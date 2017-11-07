@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn import svm
 import numpy as np
 import pandas
+from time import gmtime, strftime
 
 users = [1,2,3,4,5,6]
 activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
@@ -13,13 +14,17 @@ for feature in features:
     for act in activities:
         sumFRR = 0;
         sumFAR = 0;
+        
+        
+        with open(feature + "_3AEresult_" + act + ".txt", "a") as myfile:
+                myfile.write(strftime("%Y-%m-%d %H:%M:%S", gmtime()) + "\n\n\n")
 
         for us in users:
             activityType = act
             userNum = us
             featuresType = feature
 
-            filenames = glob.glob('../AutoEncoderMyData/results5AEdeep/AEResult_' + featuresType +'_' + activityType + '#*.csv')
+            filenames = glob.glob('../AutoEncoderMyData/results3AE/AEResult_' + featuresType +'_' + activityType + '#*.csv')
             del filenames[us-1]
 
             allUsersFeatures = pandas.DataFrame()
@@ -34,7 +39,7 @@ for feature in features:
             impostors = allUsersFeatures["target"]
             allUsersFeatures.drop(["target"], axis=1, inplace=True)
 
-            currentUserData = pandas.read_csv('../AutoEncoderMyData/results5AEdeep/AEResult_' + featuresType +'_' + activityType + '#' + str(userNum) + '.csv', header = None)
+            currentUserData = pandas.read_csv('../AutoEncoderMyData/results3AE/AEResult_' + featuresType +'_' + activityType + '#' + str(userNum) + '.csv', header = None)
             currentUserData['target'] = 1
             
             curUserTarget = currentUserData['target']
@@ -43,7 +48,7 @@ for feature in features:
             
             train_data, test_data, train_target, test_target = train_test_split(currentUserData, curUserTarget, train_size = 0.8, test_size = 0.2)  
             
-            model = svm.OneClassSVM(nu=0.1, kernel='linear')  
+            model = svm.OneClassSVM(nu=0.1, kernel='rbf')  
             y_score = model.fit(train_data).decision_function(test_data) 
             
             y_pred_train =  model.predict(train_data) 
@@ -69,11 +74,11 @@ for feature in features:
             sumFRR = sumFRR + FRR
             sumFAR = sumFAR + FAR
             
-            with open(feature + "_5DeepAEresult_" + act + ".txt", "a") as myfile:
+            with open(feature + "_3AEresult_" + act + ".txt", "a") as myfile:
                 myfile.write("User: " + str(us) + "\nFRR: " + str("%.5f" % FRR) + "\nFAR: " + str("%.5f" % FAR) + "\n\n\n")
         
           
-        with open(feature + "_5DeepAEresult_" + act + ".txt", "a") as myfile:
+        with open(feature + "_3AEresult_" + act + ".txt", "a") as myfile:
                 myfile.write("Mean: \nFRR: " + str("%.5f" % (sumFRR/6)) + "\nFAR: " + str("%.5f" % (sumFAR/6)) + "\n\n\n")
                 
 #            curColumn[act][counter] = [FRR, FAR]

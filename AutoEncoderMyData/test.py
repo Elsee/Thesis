@@ -32,8 +32,8 @@ from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 
 users = [1,2,3,4,5,6]
-activities = ["Walking"]
-features =  ["featuresOrig", "featuresFilt"]
+activities = ["Running", "Walking down-stairs", "Walking up-stairs"]
+features =  ["featuresFilt"]
 
 for feature in features:
 
