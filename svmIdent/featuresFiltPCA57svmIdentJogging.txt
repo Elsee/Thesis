@@ -33,3 +33,248 @@ FRR: 0.69064
 FAR: 0.13772
 
 
+User: 0
+FRR: 0.20982
+FAR: 0.03291
+
+
+User: 1
+FRR: 0.26160
+FAR: 0.05119
+
+
+User: 2
+FRR: 0.04898
+FAR: 0.08162
+
+
+User: 3
+FRR: 0.20961
+FAR: 0.04576
+
+
+User: 4
+FRR: 0.34667
+FAR: 0.01858
+
+
+User: 5
+FRR: 0.16867
+FAR: 0.01638
+
+
+Mean: 
+FRR: 0.20756
+FAR: 0.04107
+
+
+User: 0
+FRR: 0.76339
+FAR: 0.14008
+
+
+User: 1
+FRR: 0.54852
+FAR: 0.20563
+
+
+User: 2
+FRR: 0.57959
+FAR: 0.13746
+
+
+User: 3
+FRR: 0.56769
+FAR: 0.18898
+
+
+User: 4
+FRR: 0.92889
+FAR: 0.04561
+
+
+User: 5
+FRR: 0.73494
+FAR: 0.10431
+
+
+Mean: 
+FRR: 0.68717
+FAR: 0.13701
+
+
+User: 0
+FRR: 0.76339
+FAR: 0.13924
+
+
+User: 1
+FRR: 0.55274
+FAR: 0.20734
+
+
+User: 2
+FRR: 0.59184
+FAR: 0.13832
+
+
+User: 3
+FRR: 0.57205
+FAR: 0.19237
+
+
+User: 4
+FRR: 0.92889
+FAR: 0.04476
+
+
+User: 5
+FRR: 0.73494
+FAR: 0.10431
+
+
+Mean: 
+FRR: 0.69064
+FAR: 0.13772
+
+
+User: 0
+FRR: 1.00000
+FAR: 0.00000
+
+
+User: 1
+FRR: 1.00000
+FAR: 0.00000
+
+
+User: 2
+FRR: 1.00000
+FAR: 0.00000
+
+
+User: 3
+FRR: 1.00000
+FAR: 0.00000
+
+
+User: 4
+FRR: 1.00000
+FAR: 0.00000
+
+
+User: 5
+FRR: 0.00000
+FAR: 1.00000
+
+
+Mean: 
+FRR: 0.83333
+FAR: 0.16667
+
+
+User: 0
+FRR: 1.00000
+FAR: 0.00000
+
+
+User: 1
+FRR: 1.00000
+FAR: 0.00000
+
+
+User: 2
+FRR: 1.00000
+FAR: 0.00000
+
+
+User: 3
+FRR: 1.00000
+FAR: 0.00000
+
+
+User: 4
+FRR: 1.00000
+FAR: 0.00000
+
+
+User: 5
+FRR: 0.00000
+FAR: 1.00000
+
+
+Mean: 
+FRR: 0.83333
+FAR: 0.16667
+
+
+User: 0
+FRR: 1.00000
+FAR: 0.00000
+
+
+User: 1
+FRR: 1.00000
+FAR: 0.00000
+
+
+User: 2
+FRR: 1.00000
+FAR: 0.00000
+
+
+User: 3
+FRR: 1.00000
+FAR: 0.00000
+
+
+User: 4
+FRR: 1.00000
+FAR: 0.00000
+
+
+User: 5
+FRR: 0.00000
+FAR: 1.00000
+
+
+Mean: 
+FRR: 0.83333
+FAR: 0.16667
+
+
+User: 0
+FRR: 1.00000
+FAR: 0.00000
+
+
+User: 1
+FRR: 1.00000
+FAR: 0.00000
+
+
+User: 2
+FRR: 1.00000
+FAR: 0.00000
+
+
+User: 3
+FRR: 1.00000
+FAR: 0.00000
+
+
+User: 4
+FRR: 1.00000
+FAR: 0.00000
+
+
+User: 5
+FRR: 0.00000
+FAR: 1.00000
+
+
+Mean: 
+FRR: 0.83333
+FAR: 0.16667
+
+

@@ -1,5 +1,6 @@
 from sklearn.decomposition import PCA
 import pandas
+from sklearn.preprocessing import StandardScaler
 
 users = [1,2,3,4,5,6]
 activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
@@ -14,7 +15,10 @@ for feature in features:
             
             processingFeatures = pandas.read_csv('./myTrainingData/' + feature +'_' + act + '#' + str(us) + '.csv', header = 0)
             processingFeatures.drop(["user"], axis=1, inplace=True)
-                        
+            
+            sc = StandardScaler()
+            processingFeatures = sc.fit_transform(processingFeatures)            
+            
             XPCAreduced = pca.fit_transform(processingFeatures)
             XPCAreduced = pandas.DataFrame(XPCAreduced)
             XPCAreduced['user'] = us

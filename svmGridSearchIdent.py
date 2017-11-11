@@ -66,7 +66,7 @@ def gridSearchSVM(feat, act):
         f.write('Best parameters for ' + featureType + ' of users doing activity ' + activityType + ': ' + str(best_parameters) + '. Best accuracy: ' + str(best_accuracy) + '\n')
 
 activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
-features =  ["featuresOrigPCA40", "featuresOrigPCA57", "featuresFiltPCA40", "featuresFiltPCA57"]
+features =  ["featuresOrigPCA57"]
 
 for feature in features:
     for act in activities:

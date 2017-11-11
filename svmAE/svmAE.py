@@ -7,7 +7,7 @@ from time import gmtime, strftime
 
 users = [1,2,3,4,5,6]
 activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
-features =  ["featuresFilt", "featuresOrig"]
+features =  ["featuresOrig", "featuresFilt"]
 
 for feature in features:
 

@@ -4,7 +4,6 @@
 import pandas
 from sklearn.model_selection import train_test_split  
 from sklearn import svm
-from time import gmtime, strftime
 
 def gridSearchSVM(feat, act, us):
     # Importing the dataset
@@ -12,7 +11,7 @@ def gridSearchSVM(feat, act, us):
     activityType = act
     userNum = us
     
-    currentUserData = pandas.read_csv('../AutoEncoderMyData/results3AEdeep/AEResult_' + featureType + '_' + activityType + '#' + str(userNum) + '.csv', header = 0)
+    currentUserData = pandas.read_csv('../AutoEncoderMyData/results1AEdeep/AEResult_' + featureType + '_' + activityType + '#' + str(userNum) + '.csv', header = 0)
     currentUserData['target'] = 1
     
     curUserTarget = currentUserData['target']
@@ -50,16 +49,13 @@ def gridSearchSVM(feat, act, us):
     best_parameters = grid_search.best_params_
     
 
-    with open('./gridSearchSVMresults_3AEdeep.txt','a') as f:
+    with open('./gridSearchSVMresults_1AEdeep.txt','a') as f:
         f.write('Best parameters for ' + featureType + ' of user number ' + str(userNum) + ' doing activity ' + activityType + ': ' + str(best_parameters) + '. Best accuracy: ' + str(best_accuracy) + '\n')
 
 
 users = [1,2,3,4,5,6]
 activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
 features =  ["featuresFilt"]
-
-with open('./gridSearchSVMresults.txt_3AEdeep.txt','a') as myfile:
-                myfile.write(strftime("%Y-%m-%d %H:%M:%S", gmtime()) + "\n\n\n")
 
 for feature in features:
     for act in activities:
