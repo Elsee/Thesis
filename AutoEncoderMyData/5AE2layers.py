@@ -85,26 +85,26 @@ for feature in features:
             autoencoder_wavelet.compile(optimizer='adadelta', loss='mean_squared_error', metrics=['accuracy'])
 
             test_stat = autoencoder_stat.fit(x_train_stat, x_train_stat,
-                            epochs=3500,
-                            batch_size=32,
+                            epochs=6000,
+                            batch_size=256,
                             shuffle=True,
                             validation_data=(x_test_stat, x_test_stat))
 
             test_time = autoencoder_time.fit(x_train_time, x_train_time,
-                            epochs=3500,
-                            batch_size=32,
+                            epochs=6000,
+                            batch_size=256,
                             shuffle=True,
                             validation_data=(x_test_time, x_test_time))
 
             test_fft = autoencoder_fft.fit(x_train_fft, x_train_fft,
-                            epochs=3500,
-                            batch_size=32,
+                            epochs=6000,
+                            batch_size=256,
                             shuffle=True,
                             validation_data=(x_test_fft, x_test_fft))
 
             test_wavelet = autoencoder_wavelet.fit(x_train_wavelet, x_train_wavelet,
-                            epochs=3500,
-                            batch_size=32,
+                            epochs=6000,
+                            batch_size=256,
                             shuffle=True,
                             validation_data=(x_test_wavelet, x_test_wavelet))
 
@@ -123,35 +123,35 @@ for feature in features:
             autoencoder_fused.compile(optimizer='adadelta', loss='mean_squared_error', metrics=['accuracy'])
 
             test_fused = autoencoder_fused.fit(x_train_fused, x_train_fused,
-                            epochs=3500,
-                            batch_size=32,
+                            epochs=6000,
+                            batch_size=256,
                             shuffle=True,
                             validation_data=(x_test_fused, x_test_fused))
 
             encoded_fused = encoder_fused.predict(concat_encoded)
-            np.savetxt("./AEResult_" + feature + "_" + act + '#' + str(us) +".csv", encoded_fused, delimiter=',')
+            np.savetxt("./results5AEdeep/AEResult_" + feature + "_" + act + '#' + str(us) +".csv", encoded_fused, delimiter=',')
 
-
-            if (feature == "featuresOrig" and act == "Jogging"):
-                import matplotlib.pyplot as plt
-
-                def result_graph(test_type, name):
-                    # summarize history
-                    plt.plot(test_type.history['acc'], c='b', lw=1.5)
-                    plt.plot(test_type.history['val_acc'], c='r', lw=1.5)
-                    plt.plot(test_type.history['loss'], c='g', lw=1.5)
-                    plt.plot(test_type.history['val_loss'], c='m', lw=1.5)
-
-                    plt.title(name + str(us) + ' result')
-                    plt.ylabel('loss/accuracy')
-                    plt.xlabel('epoch')
-                    plt.legend(['train acc', 'test acc', 'train loss', 'test loss'], loc='upper left')
-                    plt.tight_layout()
-                    plt.savefig('./graphs/' + name + str(us) + '_result.jpg', format='jpg')
-                    plt.close()
-                    
-                result_graph(test_stat, "statistical")
-                result_graph(test_time, "time")
-                result_graph(test_fft, "fft")
-                result_graph(test_wavelet, "wavelet")
-                result_graph(test_fused, "total")
+#
+#            if (feature == "featuresOrig" and act == "Jogging"):
+#                import matplotlib.pyplot as plt
+#
+#                def result_graph(test_type, name):
+#                    # summarize history
+#                    plt.plot(test_type.history['acc'], c='b', lw=1.5)
+#                    plt.plot(test_type.history['val_acc'], c='r', lw=1.5)
+#                    plt.plot(test_type.history['loss'], c='g', lw=1.5)
+#                    plt.plot(test_type.history['val_loss'], c='m', lw=1.5)
+#
+#                    plt.title(name + str(us) + ' result')
+#                    plt.ylabel('loss/accuracy')
+#                    plt.xlabel('epoch')
+#                    plt.legend(['train acc', 'test acc', 'train loss', 'test loss'], loc='upper left')
+#                    plt.tight_layout()
+#                    plt.savefig('./graphs/' + name + str(us) + '_result.jpg', format='jpg')
+#                    plt.close()
+#                    
+#                result_graph(test_stat, "statistical")
+#                result_graph(test_time, "time")
+#                result_graph(test_fft, "fft")
+#                result_graph(test_wavelet, "wavelet")
+#                result_graph(test_fused, "total")
