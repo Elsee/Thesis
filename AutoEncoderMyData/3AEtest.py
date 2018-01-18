@@ -51,11 +51,11 @@ for feature in features:
             x_train_stat_wave, x_test_stat_wave = train_test_split(statisticalWaveData, test_size=0.2)
             x_train_time_fft, x_test_time_fft = train_test_split(TimeFFTData, test_size=0.2)
             
-            x_train_stat_wave = x_train_stat_wave.reshape((len(x_train_stat_wave), np.prod(x_train_stat_wave.shape[1:])))
-            x_test_stat_wave = x_test_stat_wave.reshape((len(x_test_stat_wave), np.prod(x_test_stat_wave.shape[1:])))
+            x_train_stat_wave = x_train_stat_wave.reshape((len(x_train_stat_wave), -1))
+            x_test_stat_wave = x_test_stat_wave.reshape((len(x_test_stat_wave), -1))
             
-            x_train_time_fft = x_train_time_fft.reshape((len(x_train_time_fft), np.prod(x_train_time_fft.shape[1:])))
-            x_test_time_fft = x_test_time_fft.reshape((len(x_test_time_fft), np.prod(x_test_time_fft.shape[1:])))
+            x_train_time_fft = x_train_time_fft.reshape((len(x_train_time_fft), -1))
+            x_test_time_fft = x_test_time_fft.reshape((len(x_test_time_fft), -1))
             
             #print(x_train.shape)
             #print(x_test.shape)
