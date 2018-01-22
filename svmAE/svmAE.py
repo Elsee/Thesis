@@ -5,6 +5,10 @@ import numpy as np
 import pandas
 from time import gmtime, strftime
 
+from sklearn.metrics import roc_curve, auc
+import matplotlib.pyplot as plt
+from itertools import cycle
+
 users = [1,2,3,4,5,6]
 activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
 features =  ["featuresOrig", "featuresFilt"]
@@ -16,15 +20,20 @@ for feature in features:
         sumFAR = 0;
         
         
-        with open(feature + "_3AEresultStatWave_" + act + ".txt", "a") as myfile:
+        with open(feature + "_5DeepAEresult_" + act + ".txt", "a") as myfile:
                 myfile.write(strftime("%Y-%m-%d %H:%M:%S", gmtime()) + "\n\n\n")
+                
+        fpr = dict()
+        tpr = dict()
+        roc_auc = dict()
+        thresholds = dict()
 
         for us in users:
             activityType = act
             userNum = us
             featuresType = feature
 
-            filenames = glob.glob('../AutoEncoderMyData/results3AEStatWave/AEResult_' + featuresType +'_' + activityType + '#*.csv')
+            filenames = glob.glob('../AutoEncoderMyData/results5AEDeep/AEResult_' + featuresType +'_' + activityType + '#*.csv')
             del filenames[us-1]
 
             allUsersFeatures = pandas.DataFrame()
@@ -39,7 +48,7 @@ for feature in features:
             impostors = allUsersFeatures["target"]
             allUsersFeatures.drop(["target"], axis=1, inplace=True)
 
-            currentUserData = pandas.read_csv('../AutoEncoderMyData/results3AEStatWave/AEResult_' + featuresType +'_' + activityType + '#' + str(userNum) + '.csv', header = None)
+            currentUserData = pandas.read_csv('../AutoEncoderMyData/results5AEDeep/AEResult_' + featuresType +'_' + activityType + '#' + str(userNum) + '.csv', header = None)
             currentUserData['target'] = 1
             
             curUserTarget = currentUserData['target']
@@ -49,10 +58,17 @@ for feature in features:
             train_data, test_data, train_target, test_target = train_test_split(currentUserData, curUserTarget, train_size = 0.8, test_size = 0.2)  
             
             model = svm.OneClassSVM(nu=0.1, kernel='linear')  
-            y_score = model.fit(train_data).decision_function(test_data) 
+            
+            test_data_with_impostors = np.r_[test_data, allUsersFeatures]
+            y_score = model.fit(train_data).decision_function(test_data_with_impostors) 
             
             y_pred_train =  model.predict(train_data) 
             y_pred_test = model.predict(test_data)
+            
+            y_labels = np.array([1]*test_data.shape[0]+[-1]*allUsersFeatures.shape[0])
+            
+            fpr[us], tpr[us], thresholds[us] = roc_curve(y_labels, y_score)
+            roc_auc[us] = auc(fpr[us], tpr[us])
             
                         
              # Making the Confusion Matrix
@@ -74,12 +90,30 @@ for feature in features:
             sumFRR = sumFRR + FRR
             sumFAR = sumFAR + FAR
             
-            with open(feature + "_3AEresultStatWave_" + act + ".txt", "a") as myfile:
+            with open(feature + "_5DeepAEresult_" + act + ".txt", "a") as myfile:
                 myfile.write("User: " + str(us) + "\nFRR: " + str("%.5f" % FRR) + "\nFAR: " + str("%.5f" % FAR) + "\n\n\n")
         
           
-        with open(feature + "_3AEresultStatWave_" + act + ".txt", "a") as myfile:
+        with open(feature + "_5DeepAEresult_" + act + ".txt", "a") as myfile:
                 myfile.write("Mean: \nFRR: " + str("%.5f" % (sumFRR/6)) + "\nFAR: " + str("%.5f" % (sumFAR/6)) + "\n\n\n")
+        
+        
+        feature_type = "Original" if feature == "featuresOrig" else "Filtered"
+        
+        plt.figure()
+        colors = cycle(['aqua', 'darkorange', 'cornflowerblue', 'lime', 'indigo', 'crimson'])
+        for i, color in zip(users, colors):
+            plt.plot(fpr[i], tpr[i], color=color, label='ROC curve of user {0} (area = {1:0.2f})'.format(i, roc_auc[i]))
+
+        plt.plot([0, 1], [0, 1], 'k--')
+        plt.xlim([0.0, 1.0])
+        plt.ylim([0.0, 1.05])
+        plt.xlabel('False Positive Rate')
+        plt.ylabel('True Positive Rate')
+        plt.title('ROCs for {0} obtained from {1} features'.format(act, feature_type))
+        plt.legend(loc="lower right")
+        plt.savefig('./rocs/' + feature + '_' + act + '_result.jpg', format='jpg')
+        plt.close()
                 
 #            curColumn[act][counter] = [FRR, FAR]
 #            counter=counter+1

@@ -3,6 +3,11 @@ from sklearn.model_selection import train_test_split
 from sklearn import svm
 import pandas
 from time import gmtime, strftime
+import numpy as np
+
+from sklearn.metrics import roc_curve, auc
+from sklearn.preprocessing import label_binarize
+import matplotlib.pyplot as plt
 
 users = [1,2,3,4,5,6]
 activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
@@ -43,16 +48,37 @@ for feature in features:
             
             curUserTarget = currentUserData['target']
             
+            curUserTarget = label_binarize(curUserTarget, classes=[0,1])
+            n_classes = curUserTarget.shape[1]
+            
             currentUserData.drop(["target"], axis=1, inplace=True)
             
             train_data, test_data, train_target, test_target = train_test_split(currentUserData, curUserTarget, train_size = 0.8, test_size = 0.2)  
             
             model = svm.OneClassSVM(nu=0.1, kernel='rbf', gamma=0.1)  
-            y_score = model.fit(train_data).decision_function(test_data) 
+            
+            test_data_with_impostors = np.r_[test_data, allUsersFeatures]
+            y_score = model.fit(train_data).decision_function(test_data_with_impostors) 
             
             y_pred_train =  model.predict(train_data) 
             y_pred_test = model.predict(test_data)
             
+            y_true = np.array([1]*test_data.shape[0]+[-1]*allUsersFeatures.shape[0])
+            scoring = model.predict(test_data_with_impostors)
+            fpr, tpr, thresholds = roc_curve(y_true, y_score)
+            roc_auc = auc(fpr, tpr)
+            
+            plt.figure()
+            plt.plot(fpr, tpr, label='ROC curve (area = %0.2f)' % roc_auc)
+            plt.plot([0, 1], [0, 1], 'k--')
+            plt.xlim([0.0, 1.0])
+            plt.ylim([0.0, 1.05])
+            plt.xlabel('False Positive Rate')
+            plt.ylabel('True Positive Rate')
+            plt.title('Receiver operating characteristic')
+            plt.legend(loc="lower right")
+            plt.show()
+#            
                         
              # Making the Confusion Matrix
             from sklearn.metrics import confusion_matrix
