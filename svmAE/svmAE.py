@@ -20,8 +20,8 @@ for feature in features:
         sumFAR = 0;
         
         
-        with open(feature + "_5DeepAEresult_" + act + ".txt", "a") as myfile:
-                myfile.write(strftime("%Y-%m-%d %H:%M:%S", gmtime()) + "\n\n\n")
+#        with open(feature + "_5DeepAEresult_" + act + ".txt", "a") as myfile:
+#                myfile.write(strftime("%Y-%m-%d %H:%M:%S", gmtime()) + "\n\n\n")
                 
         fpr = dict()
         tpr = dict()
@@ -90,12 +90,12 @@ for feature in features:
             sumFRR = sumFRR + FRR
             sumFAR = sumFAR + FAR
             
-            with open(feature + "_5DeepAEresult_" + act + ".txt", "a") as myfile:
-                myfile.write("User: " + str(us) + "\nFRR: " + str("%.5f" % FRR) + "\nFAR: " + str("%.5f" % FAR) + "\n\n\n")
-        
-          
-        with open(feature + "_5DeepAEresult_" + act + ".txt", "a") as myfile:
-                myfile.write("Mean: \nFRR: " + str("%.5f" % (sumFRR/6)) + "\nFAR: " + str("%.5f" % (sumFAR/6)) + "\n\n\n")
+#            with open(feature + "_5DeepAEresult_" + act + ".txt", "a") as myfile:
+#                myfile.write("User: " + str(us) + "\nFRR: " + str("%.5f" % FRR) + "\nFAR: " + str("%.5f" % FAR) + "\n\n\n")
+#        
+#          
+#        with open(feature + "_5DeepAEresult_" + act + ".txt", "a") as myfile:
+#                myfile.write("Mean: \nFRR: " + str("%.5f" % (sumFRR/6)) + "\nFAR: " + str("%.5f" % (sumFAR/6)) + "\n\n\n")
         
         
         feature_type = "Original" if feature == "featuresOrig" else "Filtered"
@@ -103,15 +103,21 @@ for feature in features:
         plt.figure()
         colors = cycle(['aqua', 'darkorange', 'cornflowerblue', 'lime', 'indigo', 'crimson'])
         for i, color in zip(users, colors):
-            plt.plot(fpr[i], tpr[i], color=color, label='ROC curve of user {0} (area = {1:0.2f})'.format(i, roc_auc[i]))
+            plt.plot(fpr[i], tpr[i], color=color, label='user {0} (area = {1:0.2f})'.format(i, roc_auc[i]))
 
         plt.plot([0, 1], [0, 1], 'k--')
         plt.xlim([0.0, 1.0])
         plt.ylim([0.0, 1.05])
         plt.xlabel('False Positive Rate')
         plt.ylabel('True Positive Rate')
-        plt.title('ROCs for {0} obtained from {1} features'.format(act, feature_type))
+        plt.rc('axes', titlesize=15)     # fontsize of the axes title
+        plt.rc('axes', labelsize=15)
+        plt.rc('legend', fontsize=15) 
+        plt.rc('xtick', labelsize=13)    # fontsize of the tick labels
+        plt.rc('ytick', labelsize=13)
+#        plt.title('ROCs for {0} obtained from {1} features'.format(act, feature_type))
         plt.legend(loc="lower right")
+        plt.tight_layout()
         plt.savefig('./rocs/' + feature + '_' + act + '_result.jpg', format='jpg')
         plt.close()
                 
