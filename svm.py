@@ -8,7 +8,8 @@ from time import gmtime, strftime
 
 users = [1,2,3,4,5,6]
 activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
-features =  ["featuresOrig", "featuresFilt", "featuresOrigPCA40", "featuresOrigPCA57", "featuresFiltPCA40", "featuresFiltPCA57"]
+#features =  ["featuresOrig", "featuresFilt", "featuresOrigPCA40", "featuresOrigPCA57", "featuresFiltPCA40", "featuresFiltPCA57"]
+features = ["featuresFilt"]
 
 for feature in features:
     
@@ -19,6 +20,7 @@ for feature in features:
         sumFRR = 0;
         sumFAR = 0;
         
+        row_accuracy = []
         for us in users:
             activityType = act
             userNum = us
@@ -78,10 +80,15 @@ for feature in features:
             
             sumFRR = sumFRR + FRR
             sumFAR = sumFAR + FAR
-
+            
+            row_accuracy.append(str("%.2f" % ((totalCM[1][1]+totalCM[0][0])/(totalCM[1][1]+totalCM[0][0]+totalCM[0][1]+totalCM[1][0]))))
+            
             with open('./svmAuth/' + feature + "_svmResults_" + act + ".txt", "a") as myfile:
                 myfile.write("User: " + str(us) + "\nFRR: " + str("%.5f" % FRR) + "\nFAR: " + str("%.5f" % FAR) + "\n\n\n")
-        
+       
+        with open("./svmAuth/results_new_accuracy/output.csv",'a') as f:
+            writer = csv.writer(f, dialect='excel')
+            writer.writerow(row_accuracy)  
           
         with open('./svmAuth/' + feature + "_svmResults_" + act + ".txt", "a") as myfile:
                 myfile.write("Mean: \nFRR: " + str("%.5f" % (sumFRR/6)) + "\nFAR: " + str("%.5f" % (sumFAR/6)) + "\n\n\n")

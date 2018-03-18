@@ -3,10 +3,11 @@ from sklearn.model_selection import train_test_split
 from sklearn import svm
 import pandas
 from time import gmtime, strftime
+import csv
 
 users = [1,2,3,4,5,6]
 activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
-features =  ["featuresOrig", "featuresFilt"]
+features =  ["featuresFilt"]
 
 for feature in features:
 
@@ -18,6 +19,7 @@ for feature in features:
         with open("./5AEDenoisingResults/" + feature + "_DenoisingRes_" + act + ".txt", "a") as myfile:
                 myfile.write(strftime("%Y-%m-%d %H:%M:%S", gmtime()) + "\n\n\n")
 
+        row_accuracy = []
         for us in users:
             activityType = act
             userNum = us
@@ -73,10 +75,18 @@ for feature in features:
             sumFRR = sumFRR + FRR
             sumFAR = sumFAR + FAR
             
+            row_accuracy.append(str("%.2f" % ((totalCM[1][1]+totalCM[0][0])/(totalCM[1][1]+totalCM[0][0]+totalCM[0][1]+totalCM[1][0]))))
+
+            
             with open("./5AEDenoisingResults/" + feature + "_DenoisingRes_" + act + ".txt", "a") as myfile:
                 myfile.write("User: " + str(us) + "\nFRR: " + str("%.5f" % FRR) + "\nFAR: " + str("%.5f" % FAR) + "\n\n\n")
         
-          
+        with open("results_new_accuracy/output.csv",'a') as f:
+            writer = csv.writer(f, dialect='excel')
+            writer.writerow(row_accuracy)  
+#            for item in row_accuracy:
+#                writer.writerow([item,])  
+        
         with open("./5AEDenoisingResults/" + feature + "_DenoisingRes_" + act + ".txt", "a") as myfile:
                 myfile.write("Mean: \nFRR: " + str("%.5f" % (sumFRR/6)) + "\nFAR: " + str("%.5f" % (sumFAR/6)) + "\n\n\n")
                 
@@ -87,9 +97,9 @@ for feature in features:
 #        sumFAR = 0;
 #        
 #        for i in [0,1,2,3,4,5]:
-#            sumFRR = sumFRR + curColumn[act][i][0]
 #            sumFAR = sumFAR + curColumn[act][i][1]
 #            
+#            sumFRR = sumFRR + curColumn[act][i][0]
 #        curColumn[act][0][0]
 #        
 #        curColumn[act][6] = [sumFRR/6, sumFAR/6]
