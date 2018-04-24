@@ -17,10 +17,8 @@ def variational_autoencoder(encoding_layer_dim, input_shape, X, X_test):
                                   stddev=1.)
         return z_mean + K.exp(z_log_var / 2) * epsilon
     
-    # note that "output_shape" isn't necessary with the TensorFlow backend
     z = Lambda(sampling, output_shape=(input_shape,))([z_mean, z_log_var])
     
-    # we instantiate these layers separately so as to reuse them later
     decoder_h1 = Dense(input_shape*2, activation='relu')
     decoder_mean = Dense(input_shape, activation='sigmoid')
     h_decoded1 = decoder_h1(z)  
@@ -28,7 +26,7 @@ def variational_autoencoder(encoding_layer_dim, input_shape, X, X_test):
     
     vae = Model(x, x_decoded_mean)
     
-    # Compute VAE loss
+    # VAE loss
     def vae_loss(x, x_decoded_mean):
         xent_loss = input_shape * metrics.binary_crossentropy(x, x_decoded_mean)
         kl_loss = - 0.5 * K.mean(1 + z_log_var - K.square(z_mean) - K.exp(z_log_var), axis=-1)
@@ -42,7 +40,6 @@ def variational_autoencoder(encoding_layer_dim, input_shape, X, X_test):
               shuffle=True,
               validation_data=(X_test, X_test))
     
-    # build a model to project inputs on the latent space
     encoder = Model(x, z_mean)
 
     return vae, encoder

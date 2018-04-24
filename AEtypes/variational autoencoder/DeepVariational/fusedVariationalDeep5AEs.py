@@ -5,10 +5,10 @@ from keras.models import Model
 from keras import backend as K
 from keras import metrics
 
-def variational_autoencoder(encoding_layer_dim, intermediate_dim1, intermediate_dim2, input_shape, X, X_test):
+def variational_autoencoder(encoding_layer_dim, input_shape, X, X_test):
     x = Input(shape=(input_shape,))
-    h1 = Dense(intermediate_dim2, activation='relu')(x)
-    h2 = Dense(intermediate_dim1, activation='relu')(h1)
+    h1 = Dense(input_shape*2, activation='relu')(x)
+    h2 = Dense(input_shape, activation='relu')(h1)
     z_mean = Dense(encoding_layer_dim, activation='relu')(h2)
     z_log_var = Dense(encoding_layer_dim, activation='relu')(h2)
     
@@ -22,35 +22,22 @@ def variational_autoencoder(encoding_layer_dim, intermediate_dim1, intermediate_
     z = Lambda(sampling, output_shape=(encoding_layer_dim,))([z_mean, z_log_var])
     
     # we instantiate these layers separately so as to reuse them later
-    decoder_h1 = Dense(intermediate_dim1, activation='relu')
-    decoder_h2 = Dense(intermediate_dim2, activation='relu')
+    decoder_h1 = Dense(input_shape, activation='relu')
+    decoder_h2 = Dense(input_shape*2, activation='relu')
     decoder_mean = Dense(input_shape, activation='sigmoid')
     h_decoded1 = decoder_h1(z)
     h_decoded2 = decoder_h2(h_decoded1)    
     x_decoded_mean = decoder_mean(h_decoded2)
     
-    # Custom loss layer
-    class CustomVariationalLayer(Layer):
-        def __init__(self, **kwargs):
-            self.is_placeholder = True
-            super(CustomVariationalLayer, self).__init__(**kwargs)
+    vae = Model(x, x_decoded_mean)
     
-        def vae_loss(self, x, x_decoded_mean):
+    def vae_loss(self, x, x_decoded_mean):
             xent_loss = input_shape * metrics.binary_crossentropy(x, x_decoded_mean)
             kl_loss = - 0.5 * K.sum(1 + z_log_var - K.square(z_mean) - K.exp(z_log_var), axis=-1)
             return K.mean(xent_loss + kl_loss)
     
-        def call(self, inputs):
-            x = inputs[0]
-            x_decoded_mean = inputs[1]
-            loss = self.vae_loss(x, x_decoded_mean)
-            self.add_loss(loss, inputs=inputs)
-            # We won't actually use the output.
-            return x
-    
-    y = CustomVariationalLayer()([x, x_decoded_mean])
-    vae = Model(x, y)
-    vae.compile(optimizer='rmsprop', loss=None, metrics=['accuracy'])
+        
+    vae.compile(optimizer='rmsprop', loss = vae_loss, metrics=['accuracy'])
     
     vae.fit(X, X, 
               batch_size=32, 
@@ -92,13 +79,13 @@ for feature in features:
             x_train_fft, x_test_fft = train_test_split(fftData, test_size=0.2)
             x_train_wavelet, x_test_wavelet = train_test_split(waveletData, test_size=0.2)
             
-            autoencoder_stat, encoder_stat = variational_autoencoder(7, 12, 17, 21, x_train_stat, x_test_stat);
+            autoencoder_stat, encoder_stat = variational_autoencoder(10, 21, x_train_stat, x_test_stat);
 
-            autoencoder_time, encoder_time = variational_autoencoder(3, 5, 7, 9, x_train_time, x_test_time);
+            autoencoder_time, encoder_time = variational_autoencoder(4, 9, x_train_time, x_test_time);
 
-            autoencoder_fft, encoder_fft = variational_autoencoder(2, 4, 5, 6, x_train_fft, x_test_fft);
+            autoencoder_fft, encoder_fft = variational_autoencoder(3, 6, x_train_fft, x_test_fft);
 
-            autoencoder_wavelet, encoder_wavelet = variational_autoencoder(8, 12, 16, 21, x_train_wavelet, x_test_wavelet);
+            autoencoder_wavelet, encoder_wavelet = variational_autoencoder(10, 21, x_train_wavelet, x_test_wavelet);
             
             encoded_stats = encoder_stat.predict(statisticalData)
             encoded_time = encoder_time.predict(timeData)
@@ -109,7 +96,7 @@ for feature in features:
 
             x_train_fused, x_test_fused = train_test_split(concat_encoded, test_size=0.2)
 
-            autoencoder_fused, encoder_fused = variational_autoencoder(8, 12, 16, 20, x_train_fused, x_test_fused);
+            autoencoder_fused, encoder_fused = variational_autoencoder(16, 57, x_train_fused, x_test_fused);
 
             encoded_fused = encoder_fused.predict(concat_encoded)
             np.savetxt("./resultsFusedVariational5AE/AEResult_" + feature + "_" + act + '#' + str(us) +".csv", encoded_fused, delimiter=',')

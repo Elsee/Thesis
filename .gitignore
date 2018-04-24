@@ -5,3 +5,20 @@
 /CNNmnist/result.jpg
 svmAuth/
 /.idea
+/data1_vs_set
+/ExtraSensory.per_uuid_features_labels/data_cleaned_labels
+/ExtraSensory.per_uuid_features_labels/ExtraSensory.raw_measurements.watch_compass
+/ExtraSensory.per_uuid_features_labels/labels
+/ExtraSensory.per_uuid_features_labels/watch_accelerometer
+/AEtypes/denoising autoencoder/DeepDenoising/DeepDenoisingSparse/interpolation/resultsFusedExtrapolated5AE
+/AEtypes/denoising autoencoder/DeepDenoising/DeepDenoisingSparse/interpolation/resultsFusedInterpolated5AE
+/AEtypes/denoising autoencoder/DeepDenoising/DeepDenoisingSparse/maskedInputNoise
+/AEtypes/denoising autoencoder/DeepDenoising/DeepDenoisingSparse/SandPNoise/resultsFusedDenoisingSandP5AE
+/AutoEncoderMyData/1vsSet
+/ExtraSensory.per_uuid_features_labels.zip
+/ExtraSensory.per_uuid_features_labels/ExtraSensory.raw_measurements.watch_compass.zip
+/ExtraSensory.per_uuid_features_labels/myExperiments/1vsSet/data-preparation.py
+/ExtraSensory.per_uuid_features_labels/myExperiments/1vsSet/test1class_OrigFeatureSpace/walking/1/testing_data_1class_featuresFilt.data
+/ExtraSensory.per_uuid_features_labels/myExperiments/1vsSet/test1class_OrigFeatureSpace/walking/1/training_data_1class_featuresFilt.data
+/ExtraSensory.per_uuid_features_labels/myExperiments/concatenatedData
+/ExtraSensory.per_uuid_features_labels/myExperiments/denoisingAE/resultsFusedDenoising5AE/

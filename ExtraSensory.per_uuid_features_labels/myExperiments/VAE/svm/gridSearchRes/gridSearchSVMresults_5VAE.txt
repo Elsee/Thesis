@@ -1,0 +1,4 @@
+Best parameters for featuresFilt of user number 1 doing activity walking: {'kernel': 'linear', 'nu': 0.1}. Best accuracy: 0.867469879518
+Best parameters for featuresFilt of user number 2 doing activity walking: {'kernel': 'linear', 'nu': 0.1}. Best accuracy: 0.875899280576
+Best parameters for featuresFilt of user number 3 doing activity walking: {'kernel': 'linear', 'nu': 0.1}. Best accuracy: 0.892537313433
+Best parameters for featuresFilt of user number 4 doing activity walking: {'kernel': 'linear', 'nu': 0.1}. Best accuracy: 0.895833333333

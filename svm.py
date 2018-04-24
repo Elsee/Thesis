@@ -5,6 +5,7 @@ import numpy as np
 import pandas
 from sklearn.preprocessing import StandardScaler
 from time import gmtime, strftime
+import csv
 
 users = [1,2,3,4,5,6]
 activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
