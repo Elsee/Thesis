@@ -31,7 +31,7 @@ def variational_autoencoder(encoding_layer_dim, input_shape, X, X_test):
     
     vae = Model(x, x_decoded_mean)
     
-    def vae_loss(self, x, x_decoded_mean):
+    def vae_loss(x, x_decoded_mean):
             xent_loss = input_shape * metrics.binary_crossentropy(x, x_decoded_mean)
             kl_loss = - 0.5 * K.sum(1 + z_log_var - K.square(z_mean) - K.exp(z_log_var), axis=-1)
             return K.mean(xent_loss + kl_loss)
@@ -43,7 +43,7 @@ def variational_autoencoder(encoding_layer_dim, input_shape, X, X_test):
               batch_size=32, 
               epochs=400,
               shuffle=True,
-              validation_data=(X_test, None))
+              validation_data=(X_test, X_test))
     
     # build a model to project inputs on the latent space
     encoder = Model(x, z_mean)
@@ -58,7 +58,7 @@ sc = StandardScaler()
 
 users = [1,2,3,4,5,6]
 activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
-features =  ["featuresOrig", "featuresFilt"]
+features =  ["featuresFilt"]
 
 for feature in features:
 

@@ -10,7 +10,7 @@ def ae(encoding_layer_dim, input_shape, X, X_test):
     classInstance = Input(shape=(input_shape,))
     encoded = Dense(encoding_dim*2, activation='relu')(classInstance)
     encoded = Dense(encoding_dim, activation='linear',
-                    activity_regularizer=regularizers.l2(0.00001))(encoded)
+                    activity_regularizer=regularizers.l2(0.00001), name='encoded')(encoded)
     decoded = Dense(encoding_dim*2, activation='relu')(encoded)
     decoded = Dense(input_shape, activation='sigmoid')(decoded)
     autoencoder = Model(classInstance, decoded)
@@ -18,14 +18,15 @@ def ae(encoding_layer_dim, input_shape, X, X_test):
     
     def custom_loss(classInstance, decoded):
         mse_loss = K.mean(K.square(decoded - classInstance), axis=-1)
-        intra_spread_loss = K.mean(K.sqrt(K.sum((K.mean(classInstance, axis=0) - classInstance)**2, axis=1)))
+        W = K.variable(value=autoencoder.get_layer('encoded').get_weights()[0])
+        intra_spread_loss = K.mean(K.sqrt((K.square(K.mean(W, axis=0) - W)).sum(1)), axis=-1)
         return K.mean(mse_loss + intra_spread_loss)
     
-    autoencoder.compile(loss=custom_loss, optimizer='adam', metrics=['accuracy'])
+    autoencoder.compile(optimizer='adadelta', loss=custom_loss, metrics=['accuracy'])
     
     autoencoder.fit(X, X, 
               batch_size=input_shape, 
-              epochs=200,
+              epochs=1000,
               shuffle=True,
               validation_data=(X_test, X_test))
 

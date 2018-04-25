@@ -35,7 +35,7 @@ sc = StandardScaler()
 
 users = [1,2,3,4,5,6]
 activities = ["Jogging", "Running", "Walking down-stairs", "Walking up-stairs", "Walking"]
-features =  ["featuresOrig", "featuresFilt"]
+features =  ["featuresFilt"]
 
 for feature in features:
 
@@ -85,26 +85,26 @@ for feature in features:
             autoencoder_wavelet.compile(optimizer='adadelta', loss='mean_squared_error', metrics=['accuracy'])
 
             test_stat = autoencoder_stat.fit(x_train_stat, x_train_stat,
-                            epochs=3500,
-                            batch_size=32,
+                            epochs=1000,
+                            batch_size=21,
                             shuffle=True,
                             validation_data=(x_test_stat, x_test_stat))
 
             test_time = autoencoder_time.fit(x_train_time, x_train_time,
-                            epochs=3500,
-                            batch_size=32,
+                            epochs=1000,
+                            batch_size=9,
                             shuffle=True,
                             validation_data=(x_test_time, x_test_time))
             
             test_fft = autoencoder_fft.fit(x_train_fft, x_train_fft,
-                            epochs=3500,
-                            batch_size=32,
+                            epochs=1000,
+                            batch_size=6,
                             shuffle=True,
                             validation_data=(x_test_fft, x_test_fft))
             
             test_wavelet = autoencoder_wavelet.fit(x_train_wavelet, x_train_wavelet,
-                            epochs=3500,
-                            batch_size=32,
+                            epochs=1000,
+                            batch_size=21,
                             shuffle=True,
                             validation_data=(x_test_wavelet, x_test_wavelet))
             
@@ -124,7 +124,7 @@ for feature in features:
             
             test_fused = autoencoder_fused.fit(x_train_fused, x_train_fused,
                             epochs=3500,
-                            batch_size=32,
+                            batch_size=57,
                             shuffle=True,
                             validation_data=(x_test_fused, x_test_fused))
             
