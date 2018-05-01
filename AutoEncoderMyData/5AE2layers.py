@@ -123,7 +123,7 @@ for feature in features:
             autoencoder_fused.compile(optimizer='adadelta', loss='mean_squared_error', metrics=['accuracy'])
             
             test_fused = autoencoder_fused.fit(x_train_fused, x_train_fused,
-                            epochs=3500,
+                            epochs=1000,
                             batch_size=57,
                             shuffle=True,
                             validation_data=(x_test_fused, x_test_fused))

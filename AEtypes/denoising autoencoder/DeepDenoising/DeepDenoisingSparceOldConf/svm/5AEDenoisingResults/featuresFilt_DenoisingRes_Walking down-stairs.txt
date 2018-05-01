@@ -43,31 +43,25 @@ User: 1
 FRR: 0.09375
 FAR: 0.12582
 
-
 User: 2
 FRR: 0.12245
 FAR: 0.02663
-
 
 User: 3
 FRR: 0.06494
 FAR: 0.11510
 
-
 User: 4
 FRR: 0.03529
 FAR: 0.01139
-
 
 User: 5
 FRR: 0.22727
 FAR: 0.04875
 
-
 User: 6
 FRR: 0.06931
 FAR: 0.00258
-
 
 Mean: 
 FRR: 0.10217

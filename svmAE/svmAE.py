@@ -21,8 +21,8 @@ for feature in features:
         sumFAR = 0;
         
         
-#        with open(feature + "_5DeepAEresult_" + act + ".txt", "a") as myfile:
-#                myfile.write(strftime("%Y-%m-%d %H:%M:%S", gmtime()) + "\n\n\n")
+        with open(feature + "_5DeepAEresult_" + act + ".txt", "a") as myfile:
+                myfile.write(strftime("%Y-%m-%d %H:%M:%S", gmtime()) + "\n\n\n")
                 
         fpr = dict()
         tpr = dict()
@@ -96,14 +96,14 @@ for feature in features:
             row_accuracy.append(str("%.2f" % ((totalCM[1][1]+totalCM[0][0])/(totalCM[1][1]+totalCM[0][0]+totalCM[0][1]+totalCM[1][0]))))
 
             
-#            with open(feature + "_5DeepAEresult_" + act + ".txt", "a") as myfile:
-#                myfile.write("User: " + str(us) + "\nFRR: " + str("%.5f" % FRR) + "\nFAR: " + str("%.5f" % FAR) + "\n\n\n")
+            with open(feature + "_5DeepAEresult_" + act + ".txt", "a") as myfile:
+                myfile.write("User: " + str(us) + "\nFRR: " + str("%.5f" % FRR) + "\nFAR: " + str("%.5f" % FAR) + "\n\n\n")
 #        
         with open("results_new_accuracy/output.csv",'a') as f:
             writer = csv.writer(f, dialect='excel')
             writer.writerow(row_accuracy)   
-#        with open(feature + "_5DeepAEresult_" + act + ".txt", "a") as myfile:
-#                myfile.write("Mean: \nFRR: " + str("%.5f" % (sumFRR/6)) + "\nFAR: " + str("%.5f" % (sumFAR/6)) + "\n\n\n")
+        with open(feature + "_5DeepAEresult_" + act + ".txt", "a") as myfile:
+                myfile.write("Mean: \nFRR: " + str("%.5f" % (sumFRR/6)) + "\nFAR: " + str("%.5f" % (sumFAR/6)) + "\n\n\n")
         
 #        
 #        feature_type = "Original" if feature == "featuresOrig" else "Filtered"
