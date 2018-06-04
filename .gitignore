@@ -22,3 +22,8 @@ svmAuth/
 /ExtraSensory.per_uuid_features_labels/myExperiments/1vsSet/test1class_OrigFeatureSpace/walking/1/training_data_1class_featuresFilt.data
 /ExtraSensory.per_uuid_features_labels/myExperiments/concatenatedData
 /ExtraSensory.per_uuid_features_labels/myExperiments/denoisingAE/resultsFusedDenoising5AE/
+/ExtraSensory/watch_accelerometer/
+/ExtraSensory/ExtraSensory.raw_measurements.watch_compass/
+/ExtraSensory/data_cleaned_labels
+/ExtraSensory/original labels/ExtraSensory.per_uuid_original_labels
+/ExtraSensory/original labels/ExtraSensory.per_uuid_original_labels.zip
