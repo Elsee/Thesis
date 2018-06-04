@@ -1,0 +1,8 @@
+
+SVM Type 7, Kernel Type 0,  Num Classes 1 
+Classification Accuracy = 89.2007% (2098/2352)
+  Precision=0,   Recall=0   Fmeasure=0
+   Total Pairwise tests=2352, True pos 254 True Neg 0, False Pos 2098, False neg 0
+  Pairwise Precision=0.107993,   Recall=1.000000   Fmeasure=0.194935
+Unknown classes true rejections 2098, False rejections 254
+
